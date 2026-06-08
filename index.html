@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23hiko AI Creative - AI活用デザイン制作</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Config for Custom Colors/Fonts -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3bf6d7',
+                        accent: '#1065b9',
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        poppins: ['"Poppins"', 'sans-serif'],
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    },
+                },
+            },
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* カスタムスタイルがあればここに追加 */
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* スクロールバーのカスタマイズ */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 transition-colors duration-300 dark:bg-gray-900 dark:text-gray-100">
+
+    <!-- Header -->
+    <header id="main-header" class="fixed w-full top-0 z-40 transition-all duration-300 py-5 bg-transparent">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="text-2xl font-bold font-poppins cursor-pointer flex items-center gap-2" onclick="navigateTo('home')">
+                <div class="w-8 h-8 rounded bg-gradient-to-br from-[#3bf6d7] to-[#1065b9] flex items-center justify-center text-white">
+                    <i data-lucide="zap" class="w-5 h-5 text-white fill-white"></i>
+                </div>
+                <span class="text-gray-800 dark:text-white">23hiko <span class="text-[#1065b9] dark:text-[#3bf6d7]">AI Creative</span></span>
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8">
+                <button onclick="navigateTo('home')" class="nav-link text-sm font-medium transition-colors hover:text-[#3bf6d7] text-gray-600 dark:text-gray-300" data-page="home">Home</button>
+                <button onclick="navigateTo('about')" class="nav-link text-sm font-medium transition-colors hover:text-[#3bf6d7] text-gray-600 dark:text-gray-300" data-page="about">About</button>
+                <button onclick="navigateTo('works')" class="nav-link text-sm font-medium transition-colors hover:text-[#3bf6d7] text-gray-600 dark:text-gray-300" data-page="works">Works</button>
+                <button onclick="navigateTo('contact')" class="nav-link text-sm font-medium transition-colors hover:text-[#3bf6d7] text-gray-600 dark:text-gray-300" data-page="contact">Contact</button>
+                
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-yellow-300" aria-label="Toggle Dark Mode">
+                    <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
+                    <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                </button>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center gap-4">
+                <button id="theme-toggle-mobile" class="text-gray-600 dark:text-yellow-300">
+                    <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
+                    <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                </button>
+                <button id="mobile-menu-btn" class="text-gray-800 dark:text-white">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-30 bg-white dark:bg-gray-900 pt-24 px-6 md:hidden hidden transform transition-transform duration-300 origin-top">
+        <div class="flex flex-col gap-6 text-center">
+            <button onclick="navigateTo('home')" class="mobile-nav-link text-2xl font-bold py-2 text-gray-800 dark:text-white" data-page="home">Home</button>
+            <button onclick="navigateTo('about')" class="mobile-nav-link text-2xl font-bold py-2 text-gray-800 dark:text-white" data-page="about">About</button>
+            <button onclick="navigateTo('works')" class="mobile-nav-link text-2xl font-bold py-2 text-gray-800 dark:text-white" data-page="works">Works</button>
+            <button onclick="navigateTo('contact')" class="mobile-nav-link text-2xl font-bold py-2 text-gray-800 dark:text-white" data-page="contact">Contact</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="min-h-screen">
+        
+        <!-- HOME PAGE -->
+        <section id="page-home" class="page-section animate-fade-in">
+            <!-- Hero Section -->
+            <div class="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-gray-50 dark:bg-gray-900">
+                <!-- Background -->
+                <div class="absolute inset-0 z-0">
+                    <img src="./hero-ai-creative.png" alt="AI design creative workspace background" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-95 dark:opacity-55" onerror="this.style.display='none'">
+                    <div class="absolute inset-0 z-10 bg-gradient-to-b from-white/70 via-white/55 to-white/95 dark:from-gray-900/88 dark:via-gray-900/72 dark:to-gray-900"></div>
+                    <div class="absolute inset-x-0 bottom-0 z-10 h-40 bg-gradient-to-t from-white dark:from-gray-900 to-transparent"></div>
+                </div>
+
+                <div class="container mx-auto px-4 z-20 text-center relative">
+                    <div class="hidden xl:block absolute left-10 bottom-16 text-left">
+                        <div class="rounded-xl bg-white/85 dark:bg-gray-800/85 backdrop-blur-md border border-white/70 dark:border-gray-700 p-4 shadow-lg">
+                            <p class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase mb-1">Fast Draft</p>
+                            <p class="text-lg font-bold text-gray-900 dark:text-white">初稿 1〜3日</p>
+                        </div>
+                    </div>
+                    <div class="hidden xl:block absolute right-10 bottom-16 text-left">
+                        <div class="rounded-xl bg-white/85 dark:bg-gray-800/85 backdrop-blur-md border border-white/70 dark:border-gray-700 p-4 shadow-lg">
+                            <p class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase mb-1">Delivery</p>
+                            <p class="text-lg font-bold text-gray-900 dark:text-white">Canva納品対応</p>
+                        </div>
+                    </div>
+                    <div class="mb-6 inline-block px-4 py-1.5 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-[#3bf6d7]/30 text-[#1065b9] dark:text-[#3bf6d7] text-sm font-semibold tracking-wide shadow-sm">
+                        AI Design / Canva / Creative Support
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins mb-6 leading-tight text-gray-900 dark:text-white drop-shadow-sm">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#3bf6d7] to-[#1065b9]">AI活用</span>で<br />
+                        伝わるデザイン制作
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-700 dark:text-gray-200 mb-10 max-w-3xl mx-auto font-medium leading-relaxed">
+                        YouTubeサムネイル、ロゴ、チラシ、名刺、電子書籍表紙などを制作。<br/>
+                        Canva・ChatGPT・Geminiを活用し、個人事業主・店舗・発信者の魅力が伝わるクリエイティブをご提案します。
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button onclick="navigateTo('works')" class="px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:-translate-y-1 shadow-lg bg-gradient-to-r from-[#3bf6d7] to-[#1065b9] text-white hover:shadow-[#3bf6d7]/40">制作実績を見る</button>
+                        <button onclick="navigateTo('contact')" class="px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:-translate-y-1 shadow-lg bg-white text-gray-800 border border-gray-200 hover:border-[#3bf6d7] dark:bg-gray-800 dark:text-white dark:border-gray-700">依頼相談する</button>
+                    </div>
+                    <div class="mt-8 flex flex-wrap justify-center gap-3 text-sm font-medium text-gray-700 dark:text-gray-200">
+                        <span class="px-4 py-2 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/70 dark:border-gray-700 shadow-sm">YouTubeサムネ</span>
+                        <span class="px-4 py-2 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/70 dark:border-gray-700 shadow-sm">ロゴ</span>
+                        <span class="px-4 py-2 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/70 dark:border-gray-700 shadow-sm">チラシ</span>
+                        <span class="px-4 py-2 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/70 dark:border-gray-700 shadow-sm">電子書籍表紙</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services Section -->
+            <div class="py-20 bg-white dark:bg-gray-900">
+                <div class="container mx-auto px-4">
+                    <div class="mb-12 text-center">
+                        <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3bf6d7] to-[#1065b9]">Services</h2>
+                        <div class="w-16 h-1 bg-[#3bf6d7] mx-auto mb-4 rounded-full"></div>
+                        <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">クラウドソーシングでご相談いただきやすい制作メニューです</p>
+                    </div>
+
+                    <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
+                        <!-- JSによってコンテンツが注入されます -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Me Preview Section (Added to Home) -->
+            <div class="py-20 bg-gray-50 dark:bg-gray-800/50">
+                <div class="container mx-auto px-4">
+                    <div class="mb-12 text-center">
+                        <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3bf6d7] to-[#1065b9]">About Me</h2>
+                        <div class="w-16 h-1 bg-[#3bf6d7] mx-auto mb-4 rounded-full"></div>
+                    </div>
+                    
+                    <div id="home-about-preview">
+                        <!-- JSによってコンテンツが注入されます -->
+                    </div>
+
+                    <div class="text-center mt-10">
+                        <button onclick="navigateTo('about')" class="px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:-translate-y-1 shadow-lg border-2 border-[#3bf6d7] text-[#3bf6d7] hover:bg-[#3bf6d7] hover:text-white">
+                            Aboutページへ
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Works Section -->
+            <div class="py-20 bg-white dark:bg-gray-900">
+                <div class="container mx-auto px-4">
+                    <div class="mb-12 text-center">
+                        <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3bf6d7] to-[#1065b9]">Recent Works</h2>
+                        <div class="w-16 h-1 bg-[#3bf6d7] mx-auto mb-4 rounded-full"></div>
+                        <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">主な制作事例を一覧でご紹介します</p>
+                    </div>
+                    
+                    <div id="home-works-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- JSによってコンテンツが注入されます -->
+                    </div>
+                    
+                    <div class="text-center mt-12">
+                        <button onclick="navigateTo('works')" class="px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:-translate-y-1 shadow-lg border-2 border-[#3bf6d7] text-[#3bf6d7] hover:bg-[#3bf6d7] hover:text-white">Worksページで絞り込む</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Price Section -->
+            <div class="py-20 bg-white dark:bg-gray-900">
+                <div class="container mx-auto px-4">
+                    <div class="mb-12 text-center">
+                        <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3bf6d7] to-[#1065b9]">Price Guide</h2>
+                        <div class="w-16 h-1 bg-[#3bf6d7] mx-auto mb-4 rounded-full"></div>
+                        <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">内容・点数・修正回数により変動します。ご予算に合わせたご相談も可能です。</p>
+                    </div>
+
+                    <div id="price-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+                        <!-- JSによってコンテンツが注入されます -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flow Section -->
+            <div class="py-20 bg-gray-50 dark:bg-gray-800/50">
+                <div class="container mx-auto px-4">
+                    <div class="mb-12 text-center">
+                        <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3bf6d7] to-[#1065b9]">Work Flow</h2>
+                        <div class="w-16 h-1 bg-[#3bf6d7] mx-auto mb-4 rounded-full"></div>
+                        <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">初めての方にも分かりやすい進行で制作します</p>
+                    </div>
+
+                    <div id="flow-grid" class="grid grid-cols-1 md:grid-cols-4 gap-5 max-w-6xl mx-auto">
+                        <!-- JSによってコンテンツが注入されます -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strengths Section -->
+            <div class="py-20 bg-gray-50 dark:bg-gray-800/50">
+                <div class="container mx-auto px-4">
+                    <div class="mb-12 text-center">
+                        <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3bf6d7] to-[#1065b9]">Why Choose Me?</h2>
+                        <div class="w-16 h-1 bg-[#3bf6d7] mx-auto mb-4 rounded-full"></div>
+                        <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">AIクリエイターとしての5つの強み</p>
+                    </div>
+                    <div id="strengths-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                        <!-- JSによってコンテンツが注入されます -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT PAGE -->
+        <section id="page-about" class="page-section hidden pt-24 pb-20 animate-slide-up">
+            <div class="container mx-auto px-4">
+                <div class="mb-12 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3bf6d7] to-[#1065b9]">About Me</h2>
+                    <div class="w-16 h-1 bg-[#3bf6d7] mx-auto mb-4 rounded-full"></div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row gap-12 items-center mb-20 max-w-6xl mx-auto">
+                    <div class="w-full lg:w-1/3 flex justify-center">
+                        <div class="relative w-64 h-64 md:w-80 md:h-80">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-[#3bf6d7] to-[#1065b9] rounded-full blur-lg opacity-50 animate-pulse"></div>
+                            <img src="./AbotMe.jpg" alt="Profile" class="relative w-full h-full object-cover rounded-full border-4 border-white dark:border-gray-800 shadow-xl" onerror="this.src='/api/placeholder/400/400'">
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-2/3">
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-900 dark:text-white">AIと共に、新しい価値を創造する。</h3>
+                        <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                            はじめまして。AIクリエーターの竹内二三彦（23hiko）です。
+                            <br><br>
+                            生成AIを使い始めて3年、これまでにYouTubeサムネイル、ショート動画、アバター、ロゴ、チラシ、ポスター、GPTsなどを作成してきました。
+                            <br><br>
+                            私のミッションは、最新のテクノロジーを活用して、クライアント様のイメージを「形」にし、ビジネスの成長をサポートすることです。
+                            従来の制作フローでは考えられなかったスピードと、AI特有の偶発性をコントロールした高品質なアウトプットをお約束します。
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                            <div class="p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-sm">
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Career</p>
+                                <p class="text-2xl font-bold text-[#1065b9] dark:text-[#3bf6d7]">45年以上</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">営業、店舗運営、コールセンター、事業企画、経営企画に携わってきました。</p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-sm">
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Business Impact</p>
+                                <p class="text-2xl font-bold text-[#1065b9] dark:text-[#3bf6d7]">業務改善</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">月額40万円のコスト削減、作業効率50%以上向上などの改善実績があります。</p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-sm">
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Creative Strength</p>
+                                <p class="text-2xl font-bold text-[#1065b9] dark:text-[#3bf6d7]">実務視点</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">現場経験を活かし、見た目だけでなく目的達成に向けた制作を心がけています。</p>
+                            </div>
+                        </div>
+                        <div class="mb-8">
+                            <h4 class="text-sm font-bold uppercase text-gray-500 mb-4 tracking-wider">Skill Set</h4>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200">Gemini</span>
+                                <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200">ChatGPT</span>
+                                <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200">Claude</span>
+                                <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200">Canva</span>
+                                <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200">SnovaAI</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <h3 class="text-2xl font-bold mb-8 text-center text-gray-800 dark:text-white">Experience Timeline</h3>
+                    <div id="timeline-container" class="relative border-l-2 border-[#3bf6d7]/30 ml-4 md:ml-0 md:pl-0 space-y-12">
+                        <!-- JSによってコンテンツが注入されます -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WORKS PAGE -->
+        <section id="page-works" class="page-section hidden pt-24 pb-20 animate-slide-up">
+            <div class="container mx-auto px-4">
+                <div class="mb-12 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3bf6d7] to-[#1065b9]">Works</h2>
+                    <div class="w-16 h-1 bg-[#3bf6d7] mx-auto mb-4 rounded-full"></div>
+                    <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">カテゴリーから制作実績をご覧いただけます</p>
+                </div>
+
+                <!-- Filters -->
+                <div id="works-filter" class="flex flex-wrap justify-center gap-2 mb-12 max-w-4xl mx-auto">
+                    <!-- JSによってボタンが注入されます -->
+                </div>
+
+                <!-- Grid -->
+                <div id="works-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- JSによってコンテンツが注入されます -->
+                </div>
+                
+                <div id="no-works-msg" class="text-center py-20 text-gray-500 hidden">
+                    該当する作品はまだありません。
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT PAGE -->
+        <section id="page-contact" class="page-section hidden pt-24 pb-20 animate-slide-up">
+            <div class="container mx-auto px-4">
+                <div class="mb-12 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3bf6d7] to-[#1065b9]">Contact</h2>
+                    <div class="w-16 h-1 bg-[#3bf6d7] mx-auto mb-4 rounded-full"></div>
+                    <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">制作のご依頼・ご相談はお気軽にどうぞ</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                    <!-- Contact Info -->
+                    <div class="space-y-8">
+                        <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+                            <h3 class="text-xl font-bold mb-6 text-gray-800 dark:text-white">Contact Info</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-[#3bf6d7]/20 p-3 rounded-lg text-[#1065b9]">
+                                        <i data-lucide="mail" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">Email</p>
+                                        <p class="text-gray-800 dark:text-gray-200 font-medium">fumi6189@gmail.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-[#3bf6d7]/20 p-3 rounded-lg text-[#1065b9]">
+                                        <i data-lucide="message-square" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">Response Time</p>
+                                        <p class="text-gray-800 dark:text-gray-200 font-medium">24時間以内に返信いたします</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 p-5 rounded-xl bg-gray-50 dark:bg-gray-700/50">
+                                <h4 class="text-sm font-bold text-gray-500 mb-3 uppercase">ご相談時にあると助かる内容</h4>
+                                <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                                    <li class="flex gap-2"><span class="text-[#1065b9] dark:text-[#3bf6d7]">•</span>制作したいもの</li>
+                                    <li class="flex gap-2"><span class="text-[#1065b9] dark:text-[#3bf6d7]">•</span>使用目的・掲載場所</li>
+                                    <li class="flex gap-2"><span class="text-[#1065b9] dark:text-[#3bf6d7]">•</span>希望サイズ・納品形式</li>
+                                    <li class="flex gap-2"><span class="text-[#1065b9] dark:text-[#3bf6d7]">•</span>希望納期・ご予算</li>
+                                    <li class="flex gap-2"><span class="text-[#1065b9] dark:text-[#3bf6d7]">•</span>参考イメージや素材の有無</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border-t-4 border-[#3bf6d7]">
+                        <!-- Success Message (Hidden by default) -->
+                        <div id="form-success" class="h-full flex flex-col items-center justify-center text-center py-10 hidden">
+                            <div class="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mb-4">
+                                <i data-lucide="check-circle" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2 text-gray-800 dark:text-white">送信完了</h3>
+                            <p class="text-gray-600 dark:text-gray-300">メールソフトが起動します。<br/>内容をご確認の上、送信してください。</p>
+                            <button onclick="resetForm()" class="mt-6 px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:-translate-y-1 shadow-lg border-2 border-[#3bf6d7] text-[#3bf6d7] hover:bg-[#3bf6d7] hover:text-white">
+                                フォームに戻る
+                            </button>
+                        </div>
+
+                        <!-- Form -->
+                        <form id="contact-form" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">お名前</label>
+                                <input type="text" name="name" id="input-name" class="w-full px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-[#3bf6d7] focus:border-transparent dark:bg-gray-700 dark:text-white outline-none transition-all" placeholder="山田 太郎">
+                                <p id="error-name" class="text-red-500 text-xs mt-1 hidden"></p>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">メールアドレス</label>
+                                <input type="email" name="email" id="input-email" class="w-full px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-[#3bf6d7] focus:border-transparent dark:bg-gray-700 dark:text-white outline-none transition-all" placeholder="example@mail.com">
+                                <p id="error-email" class="text-red-500 text-xs mt-1 hidden"></p>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">件名</label>
+                                <select name="subject" id="input-subject" class="w-full px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-[#3bf6d7] focus:border-transparent dark:bg-gray-700 dark:text-white outline-none transition-all">
+                                    <option value="">選択してください</option>
+                                    <option value="制作依頼">制作のご依頼</option>
+                                    <option value="見積もり">お見積もり</option>
+                                    <option value="その他">その他のお問い合わせ</option>
+                                </select>
+                                <p id="error-subject" class="text-red-500 text-xs mt-1 hidden"></p>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">メッセージ</label>
+                                <textarea name="message" id="input-message" rows="6" class="w-full px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-[#3bf6d7] focus:border-transparent dark:bg-gray-700 dark:text-white outline-none transition-all" placeholder="例：YouTubeサムネイルを3点お願いしたいです。ジャンルは音楽系で、納期は1週間以内を希望しています。参考画像があります。"></textarea>
+                                <p id="error-message" class="text-red-500 text-xs mt-1 hidden"></p>
+                            </div>
+
+                            <button type="submit" class="w-full mt-2 px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:-translate-y-1 shadow-lg bg-gradient-to-r from-[#3bf6d7] to-[#1065b9] text-white hover:shadow-[#3bf6d7]/40">
+                                送信する
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex justify-center items-center gap-2 mb-6 font-poppins text-xl font-bold">
+                <div class="w-6 h-6 rounded bg-gradient-to-br from-[#3bf6d7] to-[#1065b9]"></div>
+                23hiko AI Creative
+            </div>
+            <div class="flex justify-center gap-6 mb-8">
+                <button onclick="navigateTo('home')" class="text-gray-400 hover:text-[#3bf6d7] text-sm transition-colors">Home</button>
+                <button onclick="navigateTo('about')" class="text-gray-400 hover:text-[#3bf6d7] text-sm transition-colors">About</button>
+                <button onclick="navigateTo('works')" class="text-gray-400 hover:text-[#3bf6d7] text-sm transition-colors">Works</button>
+                <button onclick="navigateTo('contact')" class="text-gray-400 hover:text-[#3bf6d7] text-sm transition-colors">Contact</button>
+            </div>
+            <div class="w-full h-px bg-gray-800 mb-8 max-w-xl mx-auto"></div>
+            <p class="text-gray-500 text-sm">
+                © <span id="year"></span> 23hiko AI Creative. All Rights Reserved. <span class="ml-2 opacity-40">v2.0.0</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-top-btn" onclick="scrollToTop()" class="fixed bottom-6 right-6 p-3 rounded-full bg-[#1065b9] text-white shadow-lg transition-all duration-300 z-40 hover:bg-[#3bf6d7] opacity-0 translate-y-10 pointer-events-none">
+        <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </button>
+
+    <!-- Work Modal (Layout Updated) -->
+    <div id="work-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden animate-fade-in" onclick="closeModal()">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-5xl w-full max-h-[95vh] overflow-y-auto shadow-2xl relative flex flex-col" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute top-4 right-4 p-2 bg-white/80 dark:bg-black/50 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors z-10">
+                <i data-lucide="x" class="w-5 h-5 text-gray-800 dark:text-white"></i>
+            </button>
+            
+            <div class="p-6 md:p-8 space-y-6">
+                <div>
+                    <p id="modal-category" class="inline-block px-3 py-1 rounded-full bg-[#3bf6d7]/20 text-[#1065b9] dark:text-[#3bf6d7] text-sm font-semibold mb-3"></p>
+                    <h3 id="modal-title" class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3"></h3>
+                    <p id="modal-description" class="text-gray-600 dark:text-gray-300 leading-relaxed"></p>
+                </div>
+
+                <!-- Image Section -->
+                <div>
+                    <h4 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 text-center">商品サンプル画像</h4>
+                    <div class="flex items-center justify-center bg-gray-100 dark:bg-gray-900 rounded-xl p-2">
+                        <img id="modal-image" src="" alt="" class="w-full h-auto max-h-[60vh] object-contain rounded-lg">
+                    </div>
+                </div>
+
+                <!-- Info Section -->
+                <div class="grid md:grid-cols-2 gap-6 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
+                    <div>
+                        <h4 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">制作期間</h4>
+                        <p id="modal-period" class="font-medium text-gray-800 dark:text-white"></p>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">使用AIツール</h4>
+                        <div id="modal-tools" class="flex flex-wrap gap-2"></div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="p-5 rounded-xl border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800">
+                        <h4 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">目的</h4>
+                        <p id="modal-purpose" class="text-sm leading-relaxed text-gray-700 dark:text-gray-300"></p>
+                    </div>
+                    <div class="p-5 rounded-xl border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800">
+                        <h4 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">工夫した点</h4>
+                        <p id="modal-point" class="text-sm leading-relaxed text-gray-700 dark:text-gray-300"></p>
+                    </div>
+                    <div class="p-5 rounded-xl border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800">
+                        <h4 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">納品形式</h4>
+                        <p id="modal-deliverable" class="text-sm leading-relaxed text-gray-700 dark:text-gray-300"></p>
+                    </div>
+                </div>
+
+                <div id="modal-links-section" class="hidden p-5 rounded-xl bg-[#3bf6d7]/10 dark:bg-[#3bf6d7]/5 border border-[#3bf6d7]/30">
+                    <h4 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">関連リンク</h4>
+                    <div id="modal-links" class="flex flex-wrap gap-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Logic -->
+    <script>
+        // --- データ定義 ---
+        const TIMELINE_DATA = [
+            { year: '2023', title: '生成AI活用の開始', description: 'ChatGPTを活用し、LINEスタンプの企画・作成やTシャツデザインの販売を開始。AIによるクリエイティブの可能性を探求。' },
+            { year: '2024', title: '動画・音楽制作への展開', description: 'YouTubeやTikTok向けのショート動画制作、AI生成BGMの配信を開始。マルチメディアコンテンツへの対応力を強化。' },
+            { year: '2025', title: '実用ツールの開発', description: 'GPTsを活用し、商品レビュー生成、美容診断、デザイン案作成などの実用的なビジネスツールを開発・公開。' },
+            { year: 'Current', title: 'プロフェッショナル活動', description: 'クラウドソーシングサービスにて、生成AIを駆使した多様なデザイン提案、コンテンツ制作案件を遂行中。' }
+        ];
+
+        const STRENGTHS_DATA = [
+            { id: 1, title: 'AI活用によるスピード制作', desc: 'ラフ案作成や素材検討にAIを活用し、短納期でも見やすいデザインを目指します。', icon: 'zap' },
+            { id: 2, title: '用途に合わせた提案', desc: 'SNS、印刷物、動画サムネイルなど、掲載場所に合わせて情報設計を調整します。', icon: 'target' },
+            { id: 3, title: 'Canva納品にも対応', desc: '後から文字や写真を編集しやすいCanva共有リンクでの納品もご相談いただけます。', icon: 'layout-template' },
+            { id: 4, title: '丁寧なヒアリング', desc: '目的、ターゲット、参考イメージを確認し、認識のズレを減らして進行します。', icon: 'check-circle' },
+            { id: 5, title: 'こまめな連絡', desc: '制作中の確認や修正相談にも、できるだけ分かりやすく素早く対応します。', icon: 'message-square' },
+        ];
+
+        const SERVICES_DATA = [
+            { title: 'YouTubeサムネイル', desc: 'スマホ画面でも目に留まる文字設計と、内容が伝わるビジュアルで制作します。', icon: 'youtube-thumbnail' },
+            { title: 'SNS画像・バナー', desc: '告知、キャンペーン、投稿用画像など、目的に合わせて見やすく整えます。', icon: 'image' },
+            { title: 'ロゴデザイン', desc: '店舗、サービス、個人活動の印象づくりに使えるロゴ案をご提案します。', icon: 'sparkles' },
+            { title: 'チラシ・ポスター', desc: '情報量を整理し、読みやすさと訴求力を両立した紙面を制作します。', icon: 'file-image' },
+            { title: '名刺・ショップカード', desc: '第一印象に残るカードデザインを、用途や業種に合わせて制作します。', icon: 'badge' },
+            { title: '商品ラベル', desc: '商品の魅力や世界観が伝わるラベル、販促用デザインを作成します。', icon: 'tag' },
+            { title: '電子書籍表紙', desc: 'ジャンルや読者層に合わせて、一覧でも目に留まる表紙を制作します。', icon: 'book-open' },
+            { title: 'GPTs・AI活用サポート', desc: '業務効率化や文章作成を助けるGPTs、AI活用の相談にも対応します。', icon: 'bot' },
+        ];
+
+        const PRICE_DATA = [
+            { name: 'YouTubeサムネイル', price: '3,000円〜', note: '1点から相談可能' },
+            { name: 'SNS画像・バナー', price: '2,500円〜', note: '投稿画像・広告画像など' },
+            { name: 'ロゴデザイン', price: '8,000円〜', note: '用途に合わせて複数案も可' },
+            { name: 'チラシ・ポスター', price: '5,000円〜', note: '片面デザインの目安' },
+            { name: '名刺・ショップカード', price: '4,000円〜', note: '印刷用データ相談可' },
+            { name: 'GPTs・AI活用相談', price: '10,000円〜', note: '内容に応じてお見積もり' },
+        ];
+
+        const FLOW_DATA = [
+            { step: '01', title: 'ご相談', desc: '目的、サイズ、納期、参考イメージを確認します。' },
+            { step: '02', title: '初稿制作', desc: '内容に応じて1〜3日程度で初稿をご提案します。' },
+            { step: '03', title: '修正対応', desc: '色味、文字、配置などを確認しながら調整します。' },
+            { step: '04', title: '納品', desc: 'PNG、JPG、PDF、Canva共有リンク、Illustrator形式（AI / EPS / SVG）など、ご希望に合わせて納品します。' },
+        ];
+
+        const WORKS_DATA = [
+            { id: 1, title: "YouTube・SNS用サムネイルデザイン", category: "YouTubeサムネイル", image: "./samune.jpg", description: "音楽、知識系など多ジャンルのサムネイル制作。世界観を伝え、視認性とクリック率を両立します。", purpose: "クリックされやすく、動画内容が一目で伝わるサムネイル制作。", point: "文字量を絞り、背景と文字のコントラストを強めてスマホ表示でも読めるよう調整。", deliverable: "PNG / JPG / Canva共有リンク", tools: ["ChatGPT", "Gemini", "Canva"], period: "2日", date: "2025年1月" },
+            { id: 2, title: "ロゴデザイン・ブランディング", category: "ロゴデザイン", image: "./logo.jpg", description: "建築・飲食・医療など多業種のロゴ制作。理念を形にし、信頼感と独自性を備えたブランドイメージを構築。", purpose: "サービスや店舗の第一印象を整えるロゴデザイン制作。", point: "業種ごとの印象を整理し、信頼感・親しみやすさ・視認性のバランスを意識。", deliverable: "PNG / JPG / SVG相談可", tools: ["ChatGPT", "Gemini", "Canva"], period: "2日", date: "2024年12月" },
+            { id: 3, title: "啓発ポスター・学術告知デザイン", category: "チラシ・ポスター", image: "./poster.jpg", description: "イラスト活用や情報整理により、用途に最適なデザインを提案。", purpose: "告知内容を分かりやすく伝え、参加や閲覧につなげるポスター制作。", point: "情報の優先順位を整理し、タイトル・日時・内容が自然に読めるレイアウトに調整。", deliverable: "PDF / PNG / JPG", tools: ["ChatGPT", "Gemini", "Canva"], period: "1日", date: "2024年11月" },
+            { id: 4, title: "オリジナルVTuberアバター", category: "アバター", image: "./Avatar.jpg", description: "配信活動用のオリジナルキャラクターデザイン。三面図を含む。", purpose: "配信活動やSNSで使えるオリジナルキャラクターの制作。", point: "性格や活動ジャンルが伝わる表情、配色、衣装イメージを整理。", deliverable: "PNG / JPG / 参考三面図", tools: ["ChatGPT", "Gemini", "Canva"], period: "3日", date: "2024年10月" },
+            { id: 5, title: "電子書籍表紙", category: "電子書籍表紙", image: "./cover.jpg", description: "Kindle出版用などの電子書籍の表紙のデザインを提案。", purpose: "電子書籍のテーマと読者層が一目で伝わる表紙制作。", point: "小さな一覧表示でもタイトルが読めるよう、文字サイズと余白を調整。", deliverable: "JPG / PNG / Kindle向けサイズ相談可", tools: ["ChatGPT", "Gemini", "Canva"], period: "1日", date: "2024年9月" },
+            { id: 6, title: "ChatGPTのGPTs", category: "GPTs", image: "./gpts.jpg", description: "業務効率化を図るため、業務自動化ツールとしてGPTsを作成。", purpose: "文章作成やレビュー作成などの定型作業を効率化するGPTs制作。", point: "利用シーンを整理し、入力しやすい指示文と回答品質が安定する設計を意識。", deliverable: "GPTs設定 / プロンプト文 / 使い方案内", tools: ["ChatGPT", "Gemini"], period: "2日", date: "2024年8月", links: [
+                { label: "未来型アンチエイジングAI", url: "https://chatgpt.com/g/g-69358efbc9a48191a2a6e50e56d90455-wei-lai-xing-antieisinkuai" },
+                { label: "楽天ROOM商品レビュー", url: "https://chatgpt.com/g/g-6947e038379c819198391ba34f38e2e9-le-tian-roomshang-pin-rehiyu" },
+            ] },
+            // Added Items
+            { id: 7, title: "商品ラベル・販促チラシ", category: "チラシ・ラベルデザイン", image: "./flyer.jpg", description: "商品の魅力を引き出すラベルや、集客効果を高めるチラシのデザイン。", purpose: "商品の特徴や魅力を店頭・SNS・配布物で伝える販促デザイン。", point: "商品名、特徴、購入導線が見やすくなるよう情報を整理。", deliverable: "PDF / PNG / JPG / Canva共有リンク", tools: ["ChatGPT", "Gemini", "Canva"], period: "2日", date: "2025年1月" },
+            { id: 8, title: "ビジネス名刺・ショップカード", category: "名刺デザイン", image: "./businesscard.jpg", description: "第一印象を決める名刺や、店舗の世界観を表現するショップカード制作。", purpose: "自己紹介や店舗案内で印象に残るカードデザイン制作。", point: "読みやすさを保ちながら、業種やブランドイメージに合う配色と余白を設計。", deliverable: "PDF / PNG / JPG", tools: ["ChatGPT", "Gemini", "Canva"], period: "1日", date: "2025年1月" },
+            { id: 9, title: "その他クリエイティブ", category: "Others", image: "./others.jpg", description: "SNSヘッダー、バナー、メニュー表など、幅広いデザインニーズに対応。", purpose: "SNSや店舗運営で必要になる各種クリエイティブ制作。", point: "用途に合わせてサイズ、情報量、見せ方を調整し、使いやすいデータに仕上げます。", deliverable: "PNG / JPG / PDF / Canva共有リンク", tools: ["ChatGPT", "Gemini", "Canva"], period: "1日", date: "2025年1月" },
+        ];
+
+        const CATEGORIES = ['All', 'YouTubeサムネイル', 'ロゴデザイン', 'チラシ・ポスター', 'アバター', '電子書籍表紙', 'GPTs', 'チラシ・ラベルデザイン', '名刺デザイン', 'Others'];
+
+        // --- 状態管理 ---
+        let currentFilter = 'All';
+
+        // --- 初期化 ---
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTimeline();
+            renderStrengths();
+            renderServices();
+            renderPrices();
+            renderFlow();
+            renderWorksFilter();
+            renderWorks(); // 全作品
+            renderHomeWorks(); // Home用全作品
+            renderHomeAbout(); // Home用About
+            document.getElementById('year').textContent = new Date().getFullYear();
+            
+            // アイコン初期化
+            lucide.createIcons();
+            
+            // スクロールイベント設定
+            window.addEventListener('scroll', handleScroll);
+        });
+
+        // --- ナビゲーション ---
+        function navigateTo(pageId) {
+            // 全てのページセクションを非表示
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            // 対象ページを表示
+            const target = document.getElementById(`page-${pageId}`);
+            if (target) {
+                target.classList.remove('hidden');
+            }
+
+            // ナビゲーションの状態更新
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if(link.getAttribute('data-page') === pageId) {
+                    link.classList.remove('text-gray-600', 'dark:text-gray-300');
+                    link.classList.add('text-[#1065b9]', 'dark:text-[#3bf6d7]');
+                } else {
+                    link.classList.add('text-gray-600', 'dark:text-gray-300');
+                    link.classList.remove('text-[#1065b9]', 'dark:text-[#3bf6d7]');
+                }
+            });
+
+            // モバイルメニューのスタイル更新
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                if(link.getAttribute('data-page') === pageId) {
+                    link.classList.remove('text-gray-800', 'dark:text-white');
+                    link.classList.add('text-[#1065b9]', 'dark:text-[#3bf6d7]');
+                } else {
+                    link.classList.add('text-gray-800', 'dark:text-white');
+                    link.classList.remove('text-[#1065b9]', 'dark:text-[#3bf6d7]');
+                }
+            });
+
+            // モバイルメニューが開いていれば閉じる
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (!mobileMenu.classList.contains('hidden')) {
+                toggleMobileMenu();
+            }
+
+            // スクロールトップ
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- モバイルメニュー制御 ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = mobileMenuBtn.querySelector('i');
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                menu.classList.add('hidden');
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        }
+
+        // --- ダークモード制御 ---
+        const themeToggles = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile')];
+        
+        themeToggles.forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+            });
+        });
+
+        // --- スクロール制御 ---
+        function handleScroll() {
+            const header = document.getElementById('main-header');
+            const scrollBtn = document.getElementById('scroll-top-btn');
+            const isScrolled = window.scrollY > 50;
+
+            // ヘッダーのスタイル
+            if (isScrolled) {
+                header.classList.add('bg-white/90', 'dark:bg-gray-900/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                header.classList.remove('bg-transparent', 'py-5');
+            } else {
+                // Homeページ以外は常に背景ありにするなどのロジックも可能だが、今回はSPA的にHomeに合わせて動的に戻す
+                // シンプルにスクロール位置のみで判定
+                header.classList.remove('bg-white/90', 'dark:bg-gray-900/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                header.classList.add('bg-transparent', 'py-5');
+            }
+
+            // トップへ戻るボタン
+            if (isScrolled) {
+                scrollBtn.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+                scrollBtn.classList.add('opacity-100', 'translate-y-0');
+            } else {
+                scrollBtn.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+                scrollBtn.classList.remove('opacity-100', 'translate-y-0');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- レンダリング関数群 ---
+
+        // Home: Recent Works
+        function renderHomeWorks() {
+            const container = document.getElementById('home-works-grid');
+            const works = WORKS_DATA;
+            container.innerHTML = works.map(work => createWorkCardHTML(work)).join('');
+        }
+
+        // Home: About Preview
+        function renderHomeAbout() {
+            const container = document.getElementById('home-about-preview');
+            // Aboutページのコンテンツを複製する形でHTMLを生成
+            container.innerHTML = `
+                <div class="flex flex-col lg:flex-row gap-12 items-center max-w-6xl mx-auto">
+                    <div class="w-full lg:w-1/3 flex justify-center">
+                        <div class="relative w-64 h-64 md:w-80 md:h-80">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-[#3bf6d7] to-[#1065b9] rounded-full blur-lg opacity-50 animate-pulse"></div>
+                            <img src="./AbotMe.jpg" alt="Profile" class="relative w-full h-full object-cover rounded-full border-4 border-white dark:border-gray-800 shadow-xl" onerror="this.src='/api/placeholder/400/400'">
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-2/3">
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-900 dark:text-white">AIと共に、新しい価値を創造する。</h3>
+                        <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                            はじめまして。AIクリエーターの竹内二三彦（23hiko）です。
+                            <br><br>
+                            生成AIを使い始めて3年、これまでにYouTubeサムネイル、ショート動画、アバター、ロゴ、チラシ、ポスター、GPTsなどを作成してきました。
+                            <br><br>
+                            私のミッションは、最新のテクノロジーを活用して、クライアント様のイメージを「形」にし、ビジネスの成長をサポートすることです。
+                            従来の制作フローでは考えられなかったスピードと、AI特有の偶発性をコントロールした高品質なアウトプットをお約束します。
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                            <div class="p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-sm">
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Career</p>
+                                <p class="text-2xl font-bold text-[#1065b9] dark:text-[#3bf6d7]">45年以上</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">営業、店舗運営、コールセンター、事業企画、経営企画に携わってきました。</p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-sm">
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Business Impact</p>
+                                <p class="text-2xl font-bold text-[#1065b9] dark:text-[#3bf6d7]">業務改善</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">月額40万円のコスト削減、作業効率50%以上向上などの改善実績があります。</p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-sm">
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Creative Strength</p>
+                                <p class="text-2xl font-bold text-[#1065b9] dark:text-[#3bf6d7]">実務視点</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">現場経験を活かし、見た目だけでなく目的達成に向けた制作を心がけています。</p>
+                            </div>
+                        </div>
+                        <div class="mb-8">
+                            <h4 class="text-sm font-bold uppercase text-gray-500 mb-4 tracking-wider">Skill Set</h4>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200">Gemini</span>
+                                <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200">ChatGPT</span>
+                                <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200">Claude</span>
+                                <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200">Canva</span>
+                                <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200">SnovaAI</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Works: フィルター
+        function renderWorksFilter() {
+            const container = document.getElementById('works-filter');
+            container.innerHTML = CATEGORIES.map(cat => `
+                <button onclick="filterWorks('${cat}')" 
+                    class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${cat === currentFilter ? 'bg-[#1065b9] text-white shadow-lg scale-105' : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'}">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        // Works: グリッド
+        function renderWorks() {
+            const container = document.getElementById('works-grid');
+            const noMsg = document.getElementById('no-works-msg');
+            
+            const filtered = currentFilter === 'All' ? WORKS_DATA : WORKS_DATA.filter(w => w.category === currentFilter);
+            
+            if (filtered.length === 0) {
+                container.innerHTML = '';
+                noMsg.classList.remove('hidden');
+            } else {
+                noMsg.classList.add('hidden');
+                container.innerHTML = filtered.map(work => createWorkCardHTML(work)).join('');
+            }
+            
+            // アイコン再生成（動的にHTMLを追加したため）
+            lucide.createIcons();
+        }
+
+        function filterWorks(category) {
+            currentFilter = category;
+            renderWorksFilter(); // ボタンのスタイル更新
+            renderWorks(); // グリッド更新
+        }
+
+        // Helper: Work Card HTML
+        function createWorkCardHTML(work) {
+            // tools配列からバッジを生成
+            const toolsHTML = work.tools.slice(0, 2).map(t => 
+                `<span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded">${t}</span>`
+            ).join('');
+
+            return `
+                <div onclick="openModal(${work.id})" class="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer border border-gray-100 dark:border-gray-700">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="${work.image}" alt="${work.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="text-white font-medium flex items-center gap-2">
+                                詳細を見る <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                            </span>
+                        </div>
+                        <div class="absolute top-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded backdrop-blur-sm">
+                            ${work.category}
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-2 text-gray-800 dark:text-white line-clamp-1">${work.title}</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-3 line-clamp-2">${work.description}</p>
+                        <div class="flex flex-wrap gap-2">
+                            ${toolsHTML}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // About: Timeline (Updated: Removed Blue Dots)
+        function renderTimeline() {
+            const container = document.getElementById('timeline-container');
+            container.innerHTML = TIMELINE_DATA.map(item => `
+                <div class="relative pl-8 md:pl-0 md:flex md:gap-8 group">
+                    <div class="md:w-1/3 md:text-right md:pr-8">
+                        <span class="text-3xl font-bold text-[#3bf6d7] opacity-80 group-hover:opacity-100 transition-opacity">
+                            ${item.year}
+                        </span>
+                    </div>
+                    
+                    <div class="md:w-2/3 md:pl-8 border-l-2 border-gray-200 dark:border-gray-700 md:border-l-0 md:border-l-transparent">
+                        <h4 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">${item.title}</h4>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                            ${item.description}
+                        </p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Home: Strengths
+        function renderStrengths() {
+            const container = document.getElementById('strengths-grid');
+            container.innerHTML = STRENGTHS_DATA.map(item => `
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 dark:border-gray-700">
+                    <div class="w-12 h-12 bg-[#3bf6d7]/20 rounded-lg flex items-center justify-center text-[#1065b9] dark:text-[#3bf6d7] mb-4">
+                        <i data-lucide="${item.icon}" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">${item.title}</h3>
+                    <p class="text-gray-600 dark:text-gray-400">${item.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        // Home: Services
+        function createServiceIconHTML(icon) {
+            if (icon === 'youtube-thumbnail') {
+                return `
+                    <svg viewBox="0 0 48 48" class="w-7 h-7" aria-hidden="true">
+                        <rect x="7" y="10" width="34" height="24" rx="5" fill="currentColor" opacity="0.16"></rect>
+                        <rect x="10" y="13" width="28" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="2.4"></rect>
+                        <path d="M22 18.5v7l6-3.5-6-3.5Z" fill="currentColor"></path>
+                        <path d="M13 37h22" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path>
+                        <path d="M16 8h16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.45"></path>
+                    </svg>
+                `;
+            }
+
+            return `<i data-lucide="${icon}" class="w-5 h-5"></i>`;
+        }
+
+        function renderServices() {
+            const container = document.getElementById('services-grid');
+            container.innerHTML = SERVICES_DATA.map(item => `
+                <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-xl border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow">
+                    <div class="w-11 h-11 bg-[#3bf6d7]/20 rounded-lg flex items-center justify-center text-[#1065b9] dark:text-[#3bf6d7] mb-4">
+                        ${createServiceIconHTML(item.icon)}
+                    </div>
+                    <h3 class="font-bold text-gray-900 dark:text-white mb-2">${item.title}</h3>
+                    <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">${item.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        // Home: Price Guide
+        function renderPrices() {
+            const container = document.getElementById('price-grid');
+            container.innerHTML = PRICE_DATA.map(item => `
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl border border-gray-100 dark:border-gray-700">
+                    <div class="flex items-start justify-between gap-4 mb-3">
+                        <h3 class="font-bold text-gray-900 dark:text-white">${item.name}</h3>
+                        <p class="font-bold text-[#1065b9] dark:text-[#3bf6d7] whitespace-nowrap">${item.price}</p>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">${item.note}</p>
+                </div>
+            `).join('');
+        }
+
+        // Home: Work Flow
+        function renderFlow() {
+            const container = document.getElementById('flow-grid');
+            container.innerHTML = FLOW_DATA.map(item => `
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm">
+                    <p class="text-sm font-bold text-[#1065b9] dark:text-[#3bf6d7] mb-3">${item.step}</p>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">${item.title}</h3>
+                    <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">${item.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        // --- モーダル制御 (Updated: Added Label "商品サンプル画像") ---
+        function openModal(workId) {
+            const work = WORKS_DATA.find(w => w.id === workId);
+            if(!work) return;
+
+            const modal = document.getElementById('work-modal');
+            
+            document.getElementById('modal-category').textContent = work.category;
+            document.getElementById('modal-title').textContent = work.title;
+            document.getElementById('modal-description').textContent = work.description;
+            document.getElementById('modal-image').src = work.image;
+            document.getElementById('modal-image').alt = work.title;
+            document.getElementById('modal-period').textContent = work.period;
+            document.getElementById('modal-purpose').textContent = work.purpose;
+            document.getElementById('modal-point').textContent = work.point;
+            document.getElementById('modal-deliverable').textContent = work.deliverable;
+            
+            const toolsContainer = document.getElementById('modal-tools');
+            toolsContainer.innerHTML = work.tools.map(t => 
+                `<span class="bg-white dark:bg-gray-600 px-3 py-1 rounded-md text-sm shadow-sm text-gray-700 dark:text-gray-200 border border-gray-100 dark:border-gray-500">${t}</span>`
+            ).join('');
+
+            const linksSection = document.getElementById('modal-links-section');
+            const linksContainer = document.getElementById('modal-links');
+            if (work.links && work.links.length > 0) {
+                linksContainer.innerHTML = work.links.map(link => `
+                    <a href="${link.url}" target="_blank" rel="noopener noreferrer"
+                       class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1065b9] text-white text-sm font-medium hover:bg-[#3bf6d7] transition-colors">
+                        ${link.label}
+                        <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </a>
+                `).join('');
+                linksSection.classList.remove('hidden');
+            } else {
+                linksContainer.innerHTML = '';
+                linksSection.classList.add('hidden');
+            }
+
+            modal.classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            document.getElementById('work-modal').classList.add('hidden');
+        }
+
+        // --- フォーム制御 ---
+        const contactForm = document.getElementById('contact-form');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // 入力取得
+            const name = document.getElementById('input-name').value;
+            const email = document.getElementById('input-email').value;
+            const subject = document.getElementById('input-subject').value;
+            const message = document.getElementById('input-message').value;
+            
+            // バリデーション
+            let hasError = false;
+            
+            // Helper to show/hide error
+            const setError = (id, msg) => {
+                const el = document.getElementById(id);
+                if(msg) {
+                    el.textContent = msg;
+                    el.classList.remove('hidden');
+                    el.previousElementSibling.classList.add('border-red-500');
+                } else {
+                    el.classList.add('hidden');
+                    el.previousElementSibling.classList.remove('border-red-500');
+                }
+            };
+
+            if(!name) { setError('error-name', 'お名前を入力してください'); hasError = true; } 
+            else setError('error-name', null);
+
+            if(!email) { setError('error-email', 'メールアドレスを入力してください'); hasError = true; }
+            else if(!/\S+@\S+\.\S+/.test(email)) { setError('error-email', '正しい形式で入力してください'); hasError = true; }
+            else setError('error-email', null);
+
+            if(!subject) { setError('error-subject', '件名を入力してください'); hasError = true; }
+            else setError('error-subject', null);
+
+            if(!message) { setError('error-message', 'メッセージを入力してください'); hasError = true; }
+            else setError('error-message', null);
+
+            if(hasError) return;
+
+            // メール送信 (mailto)
+            const mailSubject = `【ポートフォリオ問い合わせ】${subject}`;
+            const mailBody = `お名前: ${name}\nメールアドレス: ${email}\n\nメッセージ:\n${message}`;
+            const mailtoUrl = `mailto:fumi6189@gmail.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+            
+            window.location.href = mailtoUrl;
+
+            // 送信完了表示
+            document.getElementById('contact-form').classList.add('hidden');
+            document.getElementById('form-success').classList.remove('hidden');
+        });
+
+        function resetForm() {
+            contactForm.reset();
+            document.getElementById('contact-form').classList.remove('hidden');
+            document.getElementById('form-success').classList.add('hidden');
+        }
+
+    </script>
+</body>
+</html>
