@@ -74,6 +74,48 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
+        .section-services {
+            background-color: #f7fbfc;
+            background-image:
+                linear-gradient(rgba(16, 101, 185, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(16, 101, 185, 0.06) 1px, transparent 1px);
+            background-size: 36px 36px;
+        }
+        .section-about {
+            background-color: #e9f6f4;
+            background-image:
+                linear-gradient(120deg, transparent 0 58%, rgba(255, 255, 255, 0.75) 58% 72%, transparent 72%),
+                linear-gradient(30deg, rgba(16, 101, 185, 0.08), transparent 55%);
+        }
+        .section-works {
+            background-color: #ffffff;
+            background-image: linear-gradient(135deg, rgba(59, 246, 215, 0.05) 25%, transparent 25% 75%, rgba(16, 101, 185, 0.04) 75%);
+            background-size: 48px 48px;
+        }
+        .section-price {
+            background-color: #f8f6f1;
+            background-image: repeating-linear-gradient(135deg, rgba(128, 92, 44, 0.035) 0 1px, transparent 1px 16px);
+        }
+        .section-flow {
+            background-color: #eef4fb;
+            background-image: linear-gradient(90deg, transparent 49.5%, rgba(16, 101, 185, 0.06) 50%, transparent 50.5%);
+            background-size: 120px 100%;
+        }
+        .section-strengths {
+            background-color: #f6f3f8;
+            background-image:
+                linear-gradient(60deg, rgba(125, 71, 140, 0.045) 12%, transparent 12% 88%, rgba(125, 71, 140, 0.045) 88%),
+                linear-gradient(-60deg, rgba(16, 101, 185, 0.035) 12%, transparent 12% 88%, rgba(16, 101, 185, 0.035) 88%);
+            background-size: 72px 72px;
+        }
+        .dark .section-services,
+        .dark .section-about,
+        .dark .section-works,
+        .dark .section-price,
+        .dark .section-flow,
+        .dark .section-strengths {
+            background-color: #111827;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 transition-colors duration-300 dark:bg-gray-900 dark:text-gray-100">
@@ -177,9 +219,9 @@
             </div>
 
             <!-- Services Section -->
-            <div class="py-20 bg-white dark:bg-gray-900">
-                <div class="container mx-auto px-4">
-                    <div class="mb-12 text-center">
+            <div class="relative py-24 overflow-hidden section-services">
+                <div class="container mx-auto px-4 relative z-10">
+                    <div class="mb-12 text-center max-w-3xl mx-auto">
                         <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3bf6d7] to-[#1065b9]">Services</h2>
                         <div class="w-16 h-1 bg-[#3bf6d7] mx-auto mb-4 rounded-full"></div>
                         <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">クラウドソーシングでご相談いただきやすい制作メニューです</p>
@@ -192,8 +234,8 @@
             </div>
 
             <!-- About Me Preview Section (Added to Home) -->
-            <div class="py-20 bg-gray-50 dark:bg-gray-800/50">
-                <div class="container mx-auto px-4">
+            <div class="relative py-24 overflow-hidden section-about">
+                <div class="container mx-auto px-4 relative z-10">
                     <div class="mb-12 text-center">
                         <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3bf6d7] to-[#1065b9]">About Me</h2>
                         <div class="w-16 h-1 bg-[#3bf6d7] mx-auto mb-4 rounded-full"></div>
@@ -212,8 +254,8 @@
             </div>
 
             <!-- Recent Works Section -->
-            <div class="py-20 bg-white dark:bg-gray-900">
-                <div class="container mx-auto px-4">
+            <div class="relative py-24 overflow-hidden section-works">
+                <div class="container mx-auto px-4 relative z-10">
                     <div class="mb-12 text-center">
                         <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3bf6d7] to-[#1065b9]">Recent Works</h2>
                         <div class="w-16 h-1 bg-[#3bf6d7] mx-auto mb-4 rounded-full"></div>
@@ -231,8 +273,8 @@
             </div>
 
             <!-- Price Section -->
-            <div class="py-20 bg-white dark:bg-gray-900">
-                <div class="container mx-auto px-4">
+            <div class="relative py-24 overflow-hidden section-price">
+                <div class="container mx-auto px-4 relative z-10">
                     <div class="mb-12 text-center">
                         <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3bf6d7] to-[#1065b9]">Price Guide</h2>
                         <div class="w-16 h-1 bg-[#3bf6d7] mx-auto mb-4 rounded-full"></div>
@@ -246,8 +288,8 @@
             </div>
 
             <!-- Flow Section -->
-            <div class="py-20 bg-gray-50 dark:bg-gray-800/50">
-                <div class="container mx-auto px-4">
+            <div class="relative py-24 overflow-hidden section-flow">
+                <div class="container mx-auto px-4 relative z-10">
                     <div class="mb-12 text-center">
                         <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3bf6d7] to-[#1065b9]">Work Flow</h2>
                         <div class="w-16 h-1 bg-[#3bf6d7] mx-auto mb-4 rounded-full"></div>
@@ -261,8 +303,8 @@
             </div>
 
             <!-- Strengths Section -->
-            <div class="py-20 bg-gray-50 dark:bg-gray-800/50">
-                <div class="container mx-auto px-4">
+            <div class="relative py-24 overflow-hidden section-strengths">
+                <div class="container mx-auto px-4 relative z-10">
                     <div class="mb-12 text-center">
                         <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3bf6d7] to-[#1065b9]">Why Choose Me?</h2>
                         <div class="w-16 h-1 bg-[#3bf6d7] mx-auto mb-4 rounded-full"></div>
@@ -281,6 +323,23 @@
                 <div class="mb-12 text-center">
                     <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3bf6d7] to-[#1065b9]">About Me</h2>
                     <div class="w-16 h-1 bg-[#3bf6d7] mx-auto mb-4 rounded-full"></div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-2xl mb-16 min-h-[260px] bg-gray-900">
+                    <img src="./hero-ai-creative.png" alt="Creative workspace" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                    <div class="absolute inset-0 bg-gradient-to-r from-gray-950/85 via-gray-900/55 to-transparent"></div>
+                    <div class="relative z-10 grid lg:grid-cols-2 gap-8 items-center p-8 md:p-10">
+                        <div>
+                            <p class="text-[#3bf6d7] text-sm font-bold uppercase tracking-wide mb-3">Business + Creative</p>
+                            <h3 class="text-2xl md:text-4xl font-bold text-white mb-4 leading-tight">現場経験を活かし、目的から逆算してデザインします。</h3>
+                            <p class="text-gray-200 leading-relaxed">営業、店舗運営、業務改善、生成AI活用の経験を組み合わせ、見た目だけでなく「何を伝えたいか」が届く制作を大切にしています。</p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-3">
+                            <img src="./samune.jpg" alt="Thumbnail work sample" class="h-28 md:h-36 w-full object-cover rounded-xl shadow-lg">
+                            <img src="./logo.jpg" alt="Logo work sample" class="h-28 md:h-36 w-full object-cover rounded-xl shadow-lg translate-y-6">
+                            <img src="./poster.jpg" alt="Poster work sample" class="h-28 md:h-36 w-full object-cover rounded-xl shadow-lg">
+                        </div>
+                    </div>
                 </div>
 
                 <div class="flex flex-col lg:flex-row gap-12 items-center mb-20 max-w-6xl mx-auto">
@@ -348,6 +407,23 @@
                     <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">カテゴリーから制作実績をご覧いただけます</p>
                 </div>
 
+                <div class="grid lg:grid-cols-[1.2fr_0.8fr] gap-6 items-stretch mb-12 max-w-6xl mx-auto">
+                    <div class="relative overflow-hidden rounded-2xl min-h-[300px] bg-gray-100 dark:bg-gray-800">
+                        <img src="./samune.jpg" alt="YouTube thumbnail design collection" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-gray-950/20 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <p class="text-[#3bf6d7] text-sm font-bold uppercase mb-2">Featured Works</p>
+                            <h3 class="text-2xl md:text-3xl font-bold text-white">サムネイル、ロゴ、チラシ、GPTsまで幅広く対応</h3>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="./logo.jpg" alt="Logo design collection" class="h-36 md:h-full min-h-[140px] w-full object-cover rounded-2xl shadow-sm">
+                        <img src="./cover.jpg" alt="Book cover design collection" class="h-36 md:h-full min-h-[140px] w-full object-cover rounded-2xl shadow-sm">
+                        <img src="./flyer.jpg" alt="Flyer design collection" class="h-36 md:h-full min-h-[140px] w-full object-cover rounded-2xl shadow-sm">
+                        <img src="./gpts.jpg" alt="GPTs creation collection" class="h-36 md:h-full min-h-[140px] w-full object-cover rounded-2xl shadow-sm">
+                    </div>
+                </div>
+
                 <!-- Filters -->
                 <div id="works-filter" class="flex flex-wrap justify-center gap-2 mb-12 max-w-4xl mx-auto">
                     <!-- JSによってボタンが注入されます -->
@@ -371,6 +447,16 @@
                     <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3bf6d7] to-[#1065b9]">Contact</h2>
                     <div class="w-16 h-1 bg-[#3bf6d7] mx-auto mb-4 rounded-full"></div>
                     <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">制作のご依頼・ご相談はお気軽にどうぞ</p>
+                </div>
+
+                <div class="relative overflow-hidden rounded-2xl mb-12 bg-gray-900 min-h-[240px] max-w-5xl mx-auto">
+                    <img src="./businesscard.jpg" alt="Design consultation visual" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                    <div class="absolute inset-0 bg-gradient-to-r from-gray-950/85 via-gray-950/55 to-gray-950/10"></div>
+                    <div class="relative z-10 p-8 md:p-10 max-w-2xl">
+                        <p class="text-[#3bf6d7] text-sm font-bold uppercase tracking-wide mb-3">Start a Project</p>
+                        <h3 class="text-2xl md:text-4xl font-bold text-white mb-4 leading-tight">イメージが固まっていなくても大丈夫です。</h3>
+                        <p class="text-gray-200 leading-relaxed">用途、納期、ご予算、参考イメージをお知らせいただければ、制作物に合う進め方をご提案します。</p>
+                    </div>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
@@ -427,6 +513,16 @@
                         </div>
 
                         <!-- Form -->
+                        <div id="estimate-prefill-notice" class="hidden mb-5 p-4 rounded-xl bg-[#3bf6d7]/10 border border-[#3bf6d7]/40 text-sm text-gray-700 dark:text-gray-200">
+                            <div class="flex items-start gap-3">
+                                <i data-lucide="clipboard-check" class="w-5 h-5 text-[#1065b9] dark:text-[#3bf6d7] shrink-0 mt-0.5"></i>
+                                <div>
+                                    <p class="font-bold">アンケート回答を入力しました</p>
+                                    <p class="mt-1 text-gray-600 dark:text-gray-300">お名前とメールアドレスを入力し、内容をご確認のうえ送信してください。</p>
+                                </div>
+                            </div>
+                        </div>
+
                         <form id="contact-form" class="space-y-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">お名前</label>
@@ -453,7 +549,7 @@
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">メッセージ</label>
-                                <textarea name="message" id="input-message" rows="6" class="w-full px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-[#3bf6d7] focus:border-transparent dark:bg-gray-700 dark:text-white outline-none transition-all" placeholder="例：YouTubeサムネイルを3点お願いしたいです。ジャンルは音楽系で、納期は1週間以内を希望しています。参考画像があります。"></textarea>
+                                <textarea name="message" id="input-message" rows="10" class="w-full px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-[#3bf6d7] focus:border-transparent dark:bg-gray-700 dark:text-white outline-none transition-all" placeholder="例：YouTubeサムネイルを3点お願いしたいです。ジャンルは音楽系で、納期は1週間以内を希望しています。参考画像があります。"></textarea>
                                 <p id="error-message" class="text-red-500 text-xs mt-1 hidden"></p>
                             </div>
 
@@ -482,7 +578,7 @@
             </div>
             <div class="w-full h-px bg-gray-800 mb-8 max-w-xl mx-auto"></div>
             <p class="text-gray-500 text-sm">
-                © <span id="year"></span> 23hiko AI Creative. All Rights Reserved. <span class="ml-2 opacity-40">v2.0.0</span>
+                © <span id="year"></span> 23hiko AI Creative. All Rights Reserved. <span class="ml-2 opacity-40">v2.8.0</span>
             </p>
         </div>
     </footer>
@@ -491,6 +587,32 @@
     <button id="scroll-top-btn" onclick="scrollToTop()" class="fixed bottom-6 right-6 p-3 rounded-full bg-[#1065b9] text-white shadow-lg transition-all duration-300 z-40 hover:bg-[#3bf6d7] opacity-0 translate-y-10 pointer-events-none">
         <i data-lucide="arrow-up" class="w-5 h-5"></i>
     </button>
+
+    <!-- Estimate Questionnaire Modal -->
+    <div id="estimate-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm hidden animate-fade-in" onclick="closeEstimateQuestionnaire()">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-2xl" onclick="event.stopPropagation()">
+            <div class="sticky top-0 z-10 flex items-start justify-between gap-4 p-6 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border-b border-gray-100 dark:border-gray-700">
+                <div>
+                    <p class="text-sm font-bold text-[#1065b9] dark:text-[#3bf6d7] mb-1">かんたん見積もり相談</p>
+                    <h2 id="estimate-modal-title" class="text-2xl font-bold text-gray-900 dark:text-white"></h2>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">分かる範囲でご回答ください。未定の項目は「未定」と入力できます。</p>
+                </div>
+                <button type="button" onclick="closeEstimateQuestionnaire()" class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors" aria-label="アンケートを閉じる">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <form id="estimate-form" class="p-6 space-y-5">
+                <div id="estimate-questions" class="space-y-5"></div>
+                <div class="pt-2 flex flex-col-reverse sm:flex-row gap-3 sm:justify-end">
+                    <button type="button" onclick="closeEstimateQuestionnaire()" class="px-5 py-3 rounded-full border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-medium hover:border-[#1065b9] transition-colors">キャンセル</button>
+                    <button type="submit" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#3bf6d7] to-[#1065b9] text-white font-bold shadow-lg hover:-translate-y-0.5 transition-transform">
+                        Contactへ回答を入力
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- Work Modal (Layout Updated) -->
     <div id="work-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden animate-fade-in" onclick="closeModal()">
@@ -560,38 +682,108 @@
         ];
 
         const STRENGTHS_DATA = [
-            { id: 1, title: 'AI活用によるスピード制作', desc: 'ラフ案作成や素材検討にAIを活用し、短納期でも見やすいデザインを目指します。', icon: 'zap' },
-            { id: 2, title: '用途に合わせた提案', desc: 'SNS、印刷物、動画サムネイルなど、掲載場所に合わせて情報設計を調整します。', icon: 'target' },
-            { id: 3, title: 'Canva納品にも対応', desc: '後から文字や写真を編集しやすいCanva共有リンクでの納品もご相談いただけます。', icon: 'layout-template' },
-            { id: 4, title: '丁寧なヒアリング', desc: '目的、ターゲット、参考イメージを確認し、認識のズレを減らして進行します。', icon: 'check-circle' },
-            { id: 5, title: 'こまめな連絡', desc: '制作中の確認や修正相談にも、できるだけ分かりやすく素早く対応します。', icon: 'message-square' },
+            { id: 1, title: 'AI活用によるスピード制作', desc: 'ラフ案作成や素材検討にAIを活用し、短納期でも見やすいデザインを目指します。', icon: 'zap', image: './why-speed.jpg' },
+            { id: 2, title: '用途に合わせた提案', desc: 'SNS、印刷物、動画サムネイルなど、掲載場所に合わせて情報設計を調整します。', icon: 'target', image: './why-tailored.jpg' },
+            { id: 3, title: 'Canva納品にも対応', desc: '後から文字や写真を編集しやすいCanva共有リンクでの納品もご相談いただけます。', icon: 'layout-template', image: './why-editable.jpg' },
+            { id: 4, title: '丁寧なヒアリング', desc: '目的、ターゲット、参考イメージを確認し、認識のズレを減らして進行します。', icon: 'check-circle', image: './why-listening.jpg' },
+            { id: 5, title: 'こまめな連絡', desc: '制作中の確認や修正相談にも、できるだけ分かりやすく素早く対応します。', icon: 'message-square', image: './why-communication.jpg' },
         ];
 
         const SERVICES_DATA = [
-            { title: 'YouTubeサムネイル', desc: 'スマホ画面でも目に留まる文字設計と、内容が伝わるビジュアルで制作します。', icon: 'youtube-thumbnail' },
-            { title: 'SNS画像・バナー', desc: '告知、キャンペーン、投稿用画像など、目的に合わせて見やすく整えます。', icon: 'image' },
-            { title: 'ロゴデザイン', desc: '店舗、サービス、個人活動の印象づくりに使えるロゴ案をご提案します。', icon: 'sparkles' },
-            { title: 'チラシ・ポスター', desc: '情報量を整理し、読みやすさと訴求力を両立した紙面を制作します。', icon: 'file-image' },
-            { title: '名刺・ショップカード', desc: '第一印象に残るカードデザインを、用途や業種に合わせて制作します。', icon: 'badge' },
-            { title: '商品ラベル', desc: '商品の魅力や世界観が伝わるラベル、販促用デザインを作成します。', icon: 'tag' },
-            { title: '電子書籍表紙', desc: 'ジャンルや読者層に合わせて、一覧でも目に留まる表紙を制作します。', icon: 'book-open' },
-            { title: 'GPTs・AI活用サポート', desc: '業務効率化や文章作成を助けるGPTs、AI活用の相談にも対応します。', icon: 'bot' },
+            { title: 'YouTubeサムネイル', estimateName: 'YouTubeサムネイル', desc: 'スマホ画面でも目に留まる文字設計と、内容が伝わるビジュアルで制作します。', icon: 'youtube-thumbnail', image: './service-youtube.svg' },
+            { title: 'SNS画像・バナー', estimateName: 'SNS画像・バナー', desc: '告知、キャンペーン、投稿用画像など、目的に合わせて見やすく整えます。', icon: 'image', image: './service-sns.svg' },
+            { title: 'ロゴデザイン', estimateName: 'ロゴデザイン', desc: '店舗、サービス、個人活動の印象づくりに使えるロゴ案をご提案します。', icon: 'sparkles', image: './service-logo.svg' },
+            { title: 'チラシ・ポスター', estimateName: 'チラシ・ポスター', desc: '情報量を整理し、読みやすさと訴求力を両立した紙面を制作します。', icon: 'file-image', image: './service-flyer.svg' },
+            { title: '名刺・ショップカード', estimateName: '名刺・ショップカード', desc: '第一印象に残るカードデザインを、用途や業種に合わせて制作します。', icon: 'badge', image: './service-businesscard.svg' },
+            { title: '商品ラベル', estimateName: '商品ラベル', desc: '商品の魅力や世界観が伝わるラベル、販促用デザインを作成します。', icon: 'tag', image: './service-label.svg' },
+            { title: '電子書籍表紙', estimateName: '電子書籍表紙', desc: 'ジャンルや読者層に合わせて、一覧でも目に留まる表紙を制作します。', icon: 'book-open', image: './service-ebook.svg' },
+            { title: 'GPTs・AI活用サポート', estimateName: 'GPTs・AI活用相談', desc: '業務効率化や文章作成を助けるGPTs、AI活用の相談にも対応します。', icon: 'bot', image: './service-gpts.svg' },
         ];
 
         const PRICE_DATA = [
-            { name: 'YouTubeサムネイル', price: '3,000円〜', note: '1点から相談可能' },
-            { name: 'SNS画像・バナー', price: '2,500円〜', note: '投稿画像・広告画像など' },
-            { name: 'ロゴデザイン', price: '8,000円〜', note: '用途に合わせて複数案も可' },
-            { name: 'チラシ・ポスター', price: '5,000円〜', note: '片面デザインの目安' },
-            { name: '名刺・ショップカード', price: '4,000円〜', note: '印刷用データ相談可' },
-            { name: 'GPTs・AI活用相談', price: '10,000円〜', note: '内容に応じてお見積もり' },
+            { number: '01', name: 'YouTubeサムネイル', price: '3,000円〜', note: '1点から相談可能', color: '#1065b9' },
+            { number: '02', name: 'SNS画像・バナー', price: '2,500円〜', note: '投稿画像・広告画像など', color: '#0f8b8d' },
+            { number: '03', name: 'ロゴデザイン', price: '8,000円〜', note: '用途に合わせて複数案も可', color: '#8b5e34' },
+            { number: '04', name: 'チラシ・ポスター', price: '5,000円〜', note: '片面デザインの目安', color: '#c24d5a' },
+            { number: '05', name: '名刺・ショップカード', price: '4,000円〜', note: '印刷用データ相談可', color: '#6b5ca5' },
+            { number: '06', name: 'GPTs・AI活用相談', price: '10,000円〜', note: '内容に応じてお見積もり', color: '#187a62' },
+        ];
+
+        const SERVICE_ESTIMATE_META = {
+            '商品ラベル': { name: '商品ラベル', price: '内容に応じてお見積もり' },
+            '電子書籍表紙': { name: '電子書籍表紙', price: '内容に応じてお見積もり' },
+        };
+
+        const ESTIMATE_QUESTIONS = {
+            'YouTubeサムネイル': [
+                { label: '動画のジャンル・内容', name: 'genre', type: 'text', placeholder: '例：ビジネス解説、音楽、商品レビュー' },
+                { label: '希望する制作点数', name: 'quantity', type: 'select', options: ['1点', '2〜3点', '4〜10点', '11点以上', '未定'] },
+                { label: 'サムネイルに入れたい文字', name: 'copy', type: 'textarea', placeholder: 'タイトル、キャッチコピーなど' },
+                { label: '希望する雰囲気', name: 'tone', type: 'text', placeholder: '例：信頼感、明るい、インパクト重視' },
+                { label: '素材・参考画像の有無', name: 'assets', type: 'select', options: ['写真・ロゴ・参考画像がある', '一部ある', '素材作成も相談したい', '未定'] },
+            ],
+            'SNS画像・バナー': [
+                { label: '使用する媒体', name: 'platform', type: 'text', placeholder: '例：Instagram、X、Facebook、Web広告' },
+                { label: '画像の目的', name: 'purpose', type: 'text', placeholder: '例：イベント告知、商品PR、キャンペーン' },
+                { label: 'サイズ・制作点数', name: 'sizeQuantity', type: 'text', placeholder: '例：正方形3点、横長バナー2点' },
+                { label: '掲載したい内容', name: 'content', type: 'textarea', placeholder: '商品名、日時、価格、キャッチコピーなど' },
+                { label: '希望する雰囲気', name: 'tone', type: 'text', placeholder: '例：親しみやすい、高級感、ポップ' },
+            ],
+            'ロゴデザイン': [
+                { label: '店舗・会社・サービス名', name: 'brandName', type: 'text', placeholder: '表記したい正式名称' },
+                { label: '業種・サービス内容', name: 'industry', type: 'textarea', placeholder: 'お客様やサービスの特徴もお書きください' },
+                { label: 'ロゴから伝えたい印象', name: 'impression', type: 'text', placeholder: '例：信頼感、先進的、親しみやすい' },
+                { label: '主な使用場所', name: 'usage', type: 'text', placeholder: '例：Webサイト、名刺、看板、SNS' },
+                { label: '希望する色・モチーフ', name: 'motif', type: 'text', placeholder: '未定の場合は「おまかせ」でも構いません' },
+            ],
+            'チラシ・ポスター': [
+                { label: '制作物の種類', name: 'format', type: 'select', options: ['チラシ', 'ポスター', 'パンフレット', 'その他・未定'] },
+                { label: '用途・告知内容', name: 'purpose', type: 'textarea', placeholder: 'イベント、店舗案内、商品紹介など' },
+                { label: '希望サイズ・片面／両面', name: 'size', type: 'text', placeholder: '例：A4片面、A3ポスター' },
+                { label: '対象となるお客様', name: 'audience', type: 'text', placeholder: '例：30〜50代女性、地域住民、法人担当者' },
+                { label: '原稿・写真・ロゴの準備状況', name: 'assets', type: 'select', options: ['すべて用意できる', '一部用意できる', '文章や素材も相談したい', '未定'] },
+            ],
+            '名刺・ショップカード': [
+                { label: '制作物の種類', name: 'format', type: 'select', options: ['名刺', 'ショップカード', '診察券・会員カード', 'その他'] },
+                { label: '業種・店舗の特徴', name: 'industry', type: 'textarea', placeholder: '事業内容や大切にしている雰囲気' },
+                { label: '片面／両面・人数', name: 'sides', type: 'text', placeholder: '例：両面1名分、片面3名分' },
+                { label: '掲載したい情報', name: 'content', type: 'textarea', placeholder: '氏名、役職、住所、SNS、QRコードなど' },
+                { label: '印刷について', name: 'printing', type: 'select', options: ['印刷用データのみ希望', '印刷方法も相談したい', 'Web用画像も必要', '未定'] },
+            ],
+            '商品ラベル': [
+                { label: '商品名・商品の種類', name: 'product', type: 'text', placeholder: '例：食品、化粧品、雑貨、ギフト商品' },
+                { label: 'ラベルの用途・形状', name: 'format', type: 'text', placeholder: '例：瓶用シール、箱パッケージ、帯ラベル' },
+                { label: '希望サイズ・制作点数', name: 'sizeQuantity', type: 'text', placeholder: '例：縦60mm×横90mm、2種類' },
+                { label: '掲載する情報', name: 'content', type: 'textarea', placeholder: '商品名、説明、原材料、容量、注意書きなど' },
+                { label: '希望する世界観・雰囲気', name: 'tone', type: 'text', placeholder: '例：自然派、高級感、和風、親しみやすい' },
+            ],
+            '電子書籍表紙': [
+                { label: '書籍タイトル・サブタイトル', name: 'bookTitle', type: 'textarea', placeholder: '未定の場合は仮タイトルでも構いません' },
+                { label: '書籍のジャンル・内容', name: 'genre', type: 'textarea', placeholder: '例：ビジネス、健康、子育て、小説' },
+                { label: '想定する読者', name: 'audience', type: 'text', placeholder: '例：副業を始めたい30〜50代' },
+                { label: '著者名・掲載したい文言', name: 'authorCopy', type: 'textarea', placeholder: '著者名、帯コピー、実績など' },
+                { label: '希望する表紙の雰囲気', name: 'tone', type: 'text', placeholder: '例：信頼感、やさしい、力強い、ミステリアス' },
+            ],
+            'GPTs・AI活用相談': [
+                { label: '解決・効率化したい業務', name: 'problem', type: 'textarea', placeholder: '現在困っている作業や時間がかかる業務' },
+                { label: '主な利用者', name: 'users', type: 'text', placeholder: '例：自分だけ、社内スタッフ、お客様' },
+                { label: '入力する情報', name: 'input', type: 'textarea', placeholder: '例：商品情報、質問文、顧客データ' },
+                { label: '期待する出力・動作', name: 'output', type: 'textarea', placeholder: '例：紹介文を生成、質問に回答、提案書を作成' },
+                { label: '公開・共有範囲', name: 'sharing', type: 'select', options: ['自分専用', '限定したメンバーで共有', '一般公開したい', '相談して決めたい'] },
+            ],
+        };
+
+        const COMMON_ESTIMATE_QUESTIONS = [
+            { label: '希望納期', name: 'deadline', type: 'text', placeholder: '例：2026年7月末、できるだけ早く、未定' },
+            { label: 'ご予算の目安', name: 'budget', type: 'select', options: ['1万円未満', '1〜3万円', '3〜5万円', '5万円以上', '相談して決めたい'] },
+            { label: 'その他のご希望・ご質問', name: 'additional', type: 'textarea', placeholder: '参考URLや補足事項など（任意）', optional: true },
         ];
 
         const FLOW_DATA = [
-            { step: '01', title: 'ご相談', desc: '目的、サイズ、納期、参考イメージを確認します。' },
-            { step: '02', title: '初稿制作', desc: '内容に応じて1〜3日程度で初稿をご提案します。' },
-            { step: '03', title: '修正対応', desc: '色味、文字、配置などを確認しながら調整します。' },
-            { step: '04', title: '納品', desc: 'PNG、JPG、PDF、Canva共有リンク、Illustrator形式（AI / EPS / SVG）など、ご希望に合わせて納品します。' },
+            { step: '01', title: 'ご相談', desc: '目的、サイズ、納期、参考イメージを確認します。', image: './workflow-consultation.png', icon: 'messages-square' },
+            { step: '02', title: '初稿制作', desc: '内容に応じて1〜3日程度で初稿をご提案します。', image: './workflow-first-draft.png', icon: 'pen-tool' },
+            { step: '03', title: '修正対応', desc: '色味、文字、配置などを確認しながら調整します。', image: './workflow-revision.png', icon: 'refresh-cw' },
+            { step: '04', title: '納品', desc: 'PNG、JPG、PDF、Canva共有リンク、Illustrator形式（AI / EPS / SVG）など、ご希望に合わせて納品します。', image: './workflow-delivery.png', icon: 'package-check' },
         ];
 
         const WORKS_DATA = [
@@ -750,50 +942,45 @@
         // Home: About Preview
         function renderHomeAbout() {
             const container = document.getElementById('home-about-preview');
-            // Aboutページのコンテンツを複製する形でHTMLを生成
             container.innerHTML = `
-                <div class="flex flex-col lg:flex-row gap-12 items-center max-w-6xl mx-auto">
-                    <div class="w-full lg:w-1/3 flex justify-center">
-                        <div class="relative w-64 h-64 md:w-80 md:h-80">
-                            <div class="absolute inset-0 bg-gradient-to-tr from-[#3bf6d7] to-[#1065b9] rounded-full blur-lg opacity-50 animate-pulse"></div>
-                            <img src="./AbotMe.jpg" alt="Profile" class="relative w-full h-full object-cover rounded-full border-4 border-white dark:border-gray-800 shadow-xl" onerror="this.src='/api/placeholder/400/400'">
-                        </div>
-                    </div>
-                    <div class="w-full lg:w-2/3">
-                        <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-900 dark:text-white">AIと共に、新しい価値を創造する。</h3>
-                        <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                            はじめまして。AIクリエーターの竹内二三彦（23hiko）です。
-                            <br><br>
-                            生成AIを使い始めて3年、これまでにYouTubeサムネイル、ショート動画、アバター、ロゴ、チラシ、ポスター、GPTsなどを作成してきました。
-                            <br><br>
-                            私のミッションは、最新のテクノロジーを活用して、クライアント様のイメージを「形」にし、ビジネスの成長をサポートすることです。
-                            従来の制作フローでは考えられなかったスピードと、AI特有の偶発性をコントロールした高品質なアウトプットをお約束します。
-                        </p>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                            <div class="p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-sm">
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Career</p>
-                                <p class="text-2xl font-bold text-[#1065b9] dark:text-[#3bf6d7]">45年以上</p>
-                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">営業、店舗運営、コールセンター、事業企画、経営企画に携わってきました。</p>
-                            </div>
-                            <div class="p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-sm">
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Business Impact</p>
-                                <p class="text-2xl font-bold text-[#1065b9] dark:text-[#3bf6d7]">業務改善</p>
-                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">月額40万円のコスト削減、作業効率50%以上向上などの改善実績があります。</p>
-                            </div>
-                            <div class="p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-sm">
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Creative Strength</p>
-                                <p class="text-2xl font-bold text-[#1065b9] dark:text-[#3bf6d7]">実務視点</p>
-                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">現場経験を活かし、見た目だけでなく目的達成に向けた制作を心がけています。</p>
+                <div class="relative overflow-hidden max-w-6xl mx-auto min-h-[620px] lg:min-h-[520px] rounded-2xl bg-[#102d35]">
+                    <div class="absolute inset-0 opacity-40" style="background-image: linear-gradient(rgba(59,246,215,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(59,246,215,.12) 1px, transparent 1px); background-size: 42px 42px;"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-[#0b2027] via-[#123b42]/95 to-[#1065b9]/55"></div>
+                    <div class="relative z-10 grid lg:grid-cols-[0.8fr_1.2fr] gap-10 items-center p-6 md:p-10 lg:p-12">
+                        <div class="relative mx-auto w-full max-w-sm">
+                            <div class="absolute -inset-3 rounded-2xl border border-[#3bf6d7]/50"></div>
+                            <img src="./AbotMe.jpg" alt="竹内二三彦 プロフィール" class="relative w-full aspect-[4/5] object-cover rounded-xl shadow-2xl" onerror="this.style.display='none'">
+                            <div class="absolute left-4 right-4 bottom-4 p-4 rounded-lg bg-gray-950/72 backdrop-blur-md border border-white/15">
+                                <p class="text-[#3bf6d7] text-sm font-bold">23hiko AI Creative</p>
+                                <p class="text-white font-bold">AI活用デザイナー / 業務改善経験45年以上</p>
                             </div>
                         </div>
-                        <div class="mb-8">
-                            <h4 class="text-sm font-bold uppercase text-gray-500 mb-4 tracking-wider">Skill Set</h4>
-                            <div class="flex flex-wrap gap-3">
-                                <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200">Gemini</span>
-                                <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200">ChatGPT</span>
-                                <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200">Claude</span>
-                                <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200">Canva</span>
-                                <span class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200">SnovaAI</span>
+                        <div>
+                            <p class="text-[#3bf6d7] text-sm font-bold uppercase mb-3">About 23hiko</p>
+                            <h3 class="text-3xl md:text-4xl font-bold mb-5 text-white leading-tight">AIと実務経験で、伝えたい価値を形にします。</h3>
+                            <p class="text-lg text-gray-200 mb-7 leading-relaxed">
+                                営業、店舗運営、コールセンター、事業企画、経営企画で培った視点と、生成AI・Canvaを組み合わせて制作しています。見た目の美しさだけでなく、用途・ターゲット・成果を意識したご提案を大切にしています。
+                            </p>
+                            <div class="grid sm:grid-cols-3 gap-3 mb-7">
+                                <div class="p-4 rounded-lg bg-white/10 backdrop-blur-md border border-white/15">
+                                    <p class="text-2xl font-bold text-[#3bf6d7]">45年以上</p>
+                                    <p class="text-sm text-gray-200">実務・マネジメント経験</p>
+                                </div>
+                                <div class="p-4 rounded-lg bg-white/10 backdrop-blur-md border border-white/15">
+                                    <p class="text-2xl font-bold text-[#3bf6d7]">50%以上</p>
+                                    <p class="text-sm text-gray-200">業務効率向上の実績</p>
+                                </div>
+                                <div class="p-4 rounded-lg bg-white/10 backdrop-blur-md border border-white/15">
+                                    <p class="text-2xl font-bold text-[#3bf6d7]">AI × Design</p>
+                                    <p class="text-sm text-gray-200">幅広い制作に対応</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1.5 rounded-full bg-white/12 text-white text-sm border border-white/15">Gemini</span>
+                                <span class="px-3 py-1.5 rounded-full bg-white/12 text-white text-sm border border-white/15">ChatGPT</span>
+                                <span class="px-3 py-1.5 rounded-full bg-white/12 text-white text-sm border border-white/15">Claude</span>
+                                <span class="px-3 py-1.5 rounded-full bg-white/12 text-white text-sm border border-white/15">Canva</span>
+                                <span class="px-3 py-1.5 rounded-full bg-white/12 text-white text-sm border border-white/15">Illustrator</span>
                             </div>
                         </div>
                     </div>
@@ -893,12 +1080,16 @@
         function renderStrengths() {
             const container = document.getElementById('strengths-grid');
             container.innerHTML = STRENGTHS_DATA.map(item => `
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 dark:border-gray-700">
-                    <div class="w-12 h-12 bg-[#3bf6d7]/20 rounded-lg flex items-center justify-center text-[#1065b9] dark:text-[#3bf6d7] mb-4">
-                        <i data-lucide="${item.icon}" class="w-6 h-6"></i>
+                <div class="group relative min-h-[270px] overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-shadow border border-white/60 dark:border-gray-700">
+                    <img src="${item.image}" alt="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-950/95 via-gray-950/65 to-gray-950/10"></div>
+                    <div class="relative z-10 h-full min-h-[270px] p-6 flex flex-col justify-end">
+                        <div class="w-12 h-12 bg-white/15 backdrop-blur-md rounded-lg flex items-center justify-center text-[#3bf6d7] mb-4 border border-white/20">
+                            <i data-lucide="${item.icon}" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-white">${item.title}</h3>
+                        <p class="text-gray-200">${item.desc}</p>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">${item.title}</h3>
-                    <p class="text-gray-600 dark:text-gray-400">${item.desc}</p>
                 </div>
             `).join('');
         }
@@ -922,13 +1113,26 @@
 
         function renderServices() {
             const container = document.getElementById('services-grid');
-            container.innerHTML = SERVICES_DATA.map(item => `
-                <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-xl border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow">
-                    <div class="w-11 h-11 bg-[#3bf6d7]/20 rounded-lg flex items-center justify-center text-[#1065b9] dark:text-[#3bf6d7] mb-4">
-                        ${createServiceIconHTML(item.icon)}
+            container.innerHTML = SERVICES_DATA.map((item, index) => `
+                <div class="group bg-white/90 dark:bg-gray-800/90 rounded-xl overflow-hidden border border-white dark:border-gray-700 shadow-md hover:shadow-xl transition-all">
+                    <button type="button" onclick="openServiceEstimate(${index})" class="relative h-36 w-full overflow-hidden text-left focus:outline-none focus:ring-4 focus:ring-inset focus:ring-[#3bf6d7]" aria-label="${item.title}の見積もりアンケートを開く">
+                        <img src="${item.image}" alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950/65 to-transparent"></div>
+                        <div class="absolute left-4 bottom-4 w-12 h-12 bg-white/90 backdrop-blur-md rounded-lg flex items-center justify-center text-[#1065b9] shadow-md">
+                            ${createServiceIconHTML(item.icon)}
+                        </div>
+                        <div class="absolute right-4 bottom-4 w-10 h-10 rounded-full bg-[#3bf6d7] text-[#0b4f66] flex items-center justify-center shadow-md opacity-90 group-hover:scale-110 transition-transform">
+                            <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+                        </div>
+                    </button>
+                    <div class="p-5 flex flex-col min-h-[190px]">
+                        <h3 class="font-bold text-gray-900 dark:text-white mb-2">${item.title}</h3>
+                        <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">${item.desc}</p>
+                        <button type="button" onclick="openServiceEstimate(${index})" class="mt-auto pt-5 inline-flex items-center gap-2 text-sm font-bold text-[#1065b9] dark:text-[#3bf6d7] hover:gap-3 transition-all self-start">
+                            質問に答えて相談
+                            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </button>
                     </div>
-                    <h3 class="font-bold text-gray-900 dark:text-white mb-2">${item.title}</h3>
-                    <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">${item.desc}</p>
                 </div>
             `).join('');
         }
@@ -936,25 +1140,152 @@
         // Home: Price Guide
         function renderPrices() {
             const container = document.getElementById('price-grid');
-            container.innerHTML = PRICE_DATA.map(item => `
-                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl border border-gray-100 dark:border-gray-700">
-                    <div class="flex items-start justify-between gap-4 mb-3">
-                        <h3 class="font-bold text-gray-900 dark:text-white">${item.name}</h3>
-                        <p class="font-bold text-[#1065b9] dark:text-[#3bf6d7] whitespace-nowrap">${item.price}</p>
+            container.innerHTML = PRICE_DATA.map((item, index) => `
+                <div class="relative bg-white dark:bg-gray-800 rounded-xl overflow-hidden border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-lg transition-shadow">
+                    <div class="h-2" style="background-color:${item.color}"></div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between gap-4 mb-5">
+                            <span class="text-4xl font-bold opacity-15" style="color:${item.color}">${item.number}</span>
+                            <button type="button" onclick="openEstimateQuestionnaire(${index})" class="w-10 h-10 rounded-full flex items-center justify-center text-white shadow-sm hover:scale-110 focus:outline-none focus:ring-4 focus:ring-offset-2 transition-transform" style="background-color:${item.color}; --tw-ring-color:${item.color}55" aria-label="${item.name}の見積もりアンケートを開く">
+                                <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                        <h3 class="font-bold text-gray-900 dark:text-white mb-2">${item.name}</h3>
+                        <p class="text-2xl font-bold mb-3" style="color:${item.color}">${item.price}</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">${item.note}</p>
+                        <button type="button" onclick="openEstimateQuestionnaire(${index})" class="mt-5 inline-flex items-center gap-2 text-sm font-bold hover:gap-3 transition-all" style="color:${item.color}">
+                            質問に答えて相談
+                            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </button>
                     </div>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">${item.note}</p>
                 </div>
             `).join('');
         }
+
+        let activeEstimateService = null;
+
+        function createEstimateField(question, index) {
+            const fieldId = `estimate-${question.name}-${index}`;
+            const required = question.optional ? '' : 'required';
+            const requiredLabel = question.optional
+                ? '<span class="text-xs font-normal text-gray-400 ml-1">任意</span>'
+                : '<span class="text-red-500 ml-1">*</span>';
+            const baseClass = 'w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-[#3bf6d7] focus:border-transparent dark:bg-gray-700 dark:text-white outline-none transition-all';
+
+            let control = '';
+            if (question.type === 'select') {
+                control = `
+                    <select id="${fieldId}" name="${question.name}" data-label="${question.label}" ${required} class="${baseClass}">
+                        <option value="">選択してください</option>
+                        ${question.options.map(option => `<option value="${option}">${option}</option>`).join('')}
+                    </select>
+                `;
+            } else if (question.type === 'textarea') {
+                control = `<textarea id="${fieldId}" name="${question.name}" data-label="${question.label}" rows="3" ${required} class="${baseClass}" placeholder="${question.placeholder || ''}"></textarea>`;
+            } else {
+                control = `<input id="${fieldId}" name="${question.name}" data-label="${question.label}" type="text" ${required} class="${baseClass}" placeholder="${question.placeholder || ''}">`;
+            }
+
+            return `
+                <div>
+                    <label for="${fieldId}" class="block text-sm font-bold text-gray-700 dark:text-gray-200 mb-2">
+                        ${question.label}${requiredLabel}
+                    </label>
+                    ${control}
+                </div>
+            `;
+        }
+
+        function showEstimateQuestionnaire(service) {
+            activeEstimateService = service;
+            if (!activeEstimateService) return;
+
+            const serviceQuestions = ESTIMATE_QUESTIONS[activeEstimateService.name] || [];
+            const questions = [...serviceQuestions, ...COMMON_ESTIMATE_QUESTIONS];
+            document.getElementById('estimate-modal-title').textContent = activeEstimateService.name;
+            document.getElementById('estimate-questions').innerHTML = questions
+                .map((question, index) => createEstimateField(question, index))
+                .join('');
+            document.getElementById('estimate-form').reset();
+            document.getElementById('estimate-modal').classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+            lucide.createIcons();
+        }
+
+        function openEstimateQuestionnaire(priceIndex) {
+            showEstimateQuestionnaire(PRICE_DATA[priceIndex]);
+        }
+
+        function openServiceEstimate(serviceIndex) {
+            const service = SERVICES_DATA[serviceIndex];
+            if (!service) return;
+
+            const estimateService = PRICE_DATA.find(item => item.name === service.estimateName)
+                || SERVICE_ESTIMATE_META[service.estimateName];
+            showEstimateQuestionnaire(estimateService);
+        }
+
+        function closeEstimateQuestionnaire() {
+            document.getElementById('estimate-modal').classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !document.getElementById('estimate-modal').classList.contains('hidden')) {
+                closeEstimateQuestionnaire();
+            }
+        });
+
+        document.getElementById('estimate-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (!activeEstimateService) return;
+
+            const answerLines = Array.from(event.currentTarget.elements)
+                .filter(field => field.dataset && field.dataset.label && field.value.trim())
+                .map(field => `・${field.dataset.label}：${field.value.trim()}`);
+
+            const estimateMessage = [
+                `【${activeEstimateService.name}のお見積もり相談】`,
+                `料金目安：${activeEstimateService.price}`,
+                '',
+                ...answerLines,
+                '',
+                '上記内容で制作可否とお見積もりをご相談したいです。'
+            ].join('\n');
+
+            document.getElementById('input-subject').value = '見積もり';
+            document.getElementById('input-message').value = estimateMessage;
+            document.getElementById('estimate-prefill-notice').classList.remove('hidden');
+            document.getElementById('contact-form').classList.remove('hidden');
+            document.getElementById('form-success').classList.add('hidden');
+            closeEstimateQuestionnaire();
+            navigateTo('contact');
+            lucide.createIcons();
+
+            window.setTimeout(() => {
+                const messageField = document.getElementById('input-message');
+                messageField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                messageField.focus({ preventScroll: true });
+            }, 350);
+        });
 
         // Home: Work Flow
         function renderFlow() {
             const container = document.getElementById('flow-grid');
             container.innerHTML = FLOW_DATA.map(item => `
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm">
-                    <p class="text-sm font-bold text-[#1065b9] dark:text-[#3bf6d7] mb-3">${item.step}</p>
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">${item.title}</h3>
-                    <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">${item.desc}</p>
+                <div class="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden border border-gray-100 dark:border-gray-700 shadow-md">
+                    <div class="relative h-32 overflow-hidden">
+                        <img src="${item.image}" alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950/70 to-transparent"></div>
+                        <p class="absolute left-4 bottom-3 text-4xl font-bold text-white/90">${item.step}</p>
+                        <div class="absolute right-4 bottom-4 w-10 h-10 rounded-lg bg-[#3bf6d7] text-[#0b4f66] flex items-center justify-center shadow-md">
+                            <i data-lucide="${item.icon}" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">${item.title}</h3>
+                        <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">${item.desc}</p>
+                    </div>
                 </div>
             `).join('');
         }
@@ -1062,6 +1393,7 @@
 
         function resetForm() {
             contactForm.reset();
+            document.getElementById('estimate-prefill-notice').classList.add('hidden');
             document.getElementById('contact-form').classList.remove('hidden');
             document.getElementById('form-success').classList.add('hidden');
         }
