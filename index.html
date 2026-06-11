@@ -281,7 +281,7 @@
                         <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">内容・点数・修正回数により変動します。ご予算に合わせたご相談も可能です。</p>
                     </div>
 
-                    <div id="price-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+                    <div id="price-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
                         <!-- JSによってコンテンツが注入されます -->
                     </div>
                 </div>
@@ -578,7 +578,7 @@
             </div>
             <div class="w-full h-px bg-gray-800 mb-8 max-w-xl mx-auto"></div>
             <p class="text-gray-500 text-sm">
-                © <span id="year"></span> 23hiko AI Creative. All Rights Reserved. <span class="ml-2 opacity-40">v2.8.0</span>
+                © <span id="year"></span> 23hiko AI Creative. All Rights Reserved. <span class="ml-2 opacity-40">v2.9.0</span>
             </p>
         </div>
     </footer>
@@ -690,23 +690,25 @@
         ];
 
         const SERVICES_DATA = [
-            { title: 'YouTubeサムネイル', estimateName: 'YouTubeサムネイル', desc: 'スマホ画面でも目に留まる文字設計と、内容が伝わるビジュアルで制作します。', icon: 'youtube-thumbnail', image: './service-youtube.svg' },
-            { title: 'SNS画像・バナー', estimateName: 'SNS画像・バナー', desc: '告知、キャンペーン、投稿用画像など、目的に合わせて見やすく整えます。', icon: 'image', image: './service-sns.svg' },
-            { title: 'ロゴデザイン', estimateName: 'ロゴデザイン', desc: '店舗、サービス、個人活動の印象づくりに使えるロゴ案をご提案します。', icon: 'sparkles', image: './service-logo.svg' },
-            { title: 'チラシ・ポスター', estimateName: 'チラシ・ポスター', desc: '情報量を整理し、読みやすさと訴求力を両立した紙面を制作します。', icon: 'file-image', image: './service-flyer.svg' },
-            { title: '名刺・ショップカード', estimateName: '名刺・ショップカード', desc: '第一印象に残るカードデザインを、用途や業種に合わせて制作します。', icon: 'badge', image: './service-businesscard.svg' },
-            { title: '商品ラベル', estimateName: '商品ラベル', desc: '商品の魅力や世界観が伝わるラベル、販促用デザインを作成します。', icon: 'tag', image: './service-label.svg' },
-            { title: '電子書籍表紙', estimateName: '電子書籍表紙', desc: 'ジャンルや読者層に合わせて、一覧でも目に留まる表紙を制作します。', icon: 'book-open', image: './service-ebook.svg' },
-            { title: 'GPTs・AI活用サポート', estimateName: 'GPTs・AI活用相談', desc: '業務効率化や文章作成を助けるGPTs、AI活用の相談にも対応します。', icon: 'bot', image: './service-gpts.svg' },
+            { title: 'YouTubeサムネイル', estimateName: 'YouTubeサムネイル', desc: 'スマホ画面でも目に留まる文字設計と、内容が伝わるビジュアルで制作します。', icon: 'youtube-thumbnail', image: './service-real-youtube.jpg' },
+            { title: 'SNS画像・バナー', estimateName: 'SNS画像・バナー', desc: '告知、キャンペーン、投稿用画像など、目的に合わせて見やすく整えます。', icon: 'image', image: './service-real-sns.jpg' },
+            { title: 'ロゴデザイン', estimateName: 'ロゴデザイン', desc: '店舗、サービス、個人活動の印象づくりに使えるロゴ案をご提案します。', icon: 'sparkles', image: './service-real-logo.jpg' },
+            { title: 'チラシ・ポスター', estimateName: 'チラシ・ポスター', desc: '情報量を整理し、読みやすさと訴求力を両立した紙面を制作します。', icon: 'file-image', image: './service-real-flyer.jpg' },
+            { title: '名刺・ショップカード', estimateName: '名刺・ショップカード', desc: '第一印象に残るカードデザインを、用途や業種に合わせて制作します。', icon: 'badge', image: './service-real-businesscard.jpg' },
+            { title: '商品ラベル', estimateName: '商品ラベル', desc: '商品の魅力や世界観が伝わるラベル、販促用デザインを作成します。', icon: 'tag', image: './service-real-label.jpg' },
+            { title: '電子書籍表紙', estimateName: '電子書籍表紙', desc: 'ジャンルや読者層に合わせて、一覧でも目に留まる表紙を制作します。', icon: 'book-open', image: './service-real-ebook.jpg' },
+            { title: 'GPTs・AI活用サポート', estimateName: 'GPTs・AI活用相談', desc: '業務効率化や文章作成を助けるGPTs、AI活用の相談にも対応します。', icon: 'bot', image: './service-real-gpts.jpg' },
         ];
 
         const PRICE_DATA = [
-            { number: '01', name: 'YouTubeサムネイル', price: '3,000円〜', note: '1点から相談可能', color: '#1065b9' },
-            { number: '02', name: 'SNS画像・バナー', price: '2,500円〜', note: '投稿画像・広告画像など', color: '#0f8b8d' },
-            { number: '03', name: 'ロゴデザイン', price: '8,000円〜', note: '用途に合わせて複数案も可', color: '#8b5e34' },
-            { number: '04', name: 'チラシ・ポスター', price: '5,000円〜', note: '片面デザインの目安', color: '#c24d5a' },
-            { number: '05', name: '名刺・ショップカード', price: '4,000円〜', note: '印刷用データ相談可', color: '#6b5ca5' },
-            { number: '06', name: 'GPTs・AI活用相談', price: '10,000円〜', note: '内容に応じてお見積もり', color: '#187a62' },
+            { number: '01', name: 'YouTubeサムネイル', price: '3,000円〜', note: '1点から相談可能', color: '#1065b9', icon: 'monitor-play' },
+            { number: '02', name: 'SNS画像・バナー', price: '2,500円〜', note: '投稿画像・広告画像など', color: '#0f8b8d', icon: 'panels-top-left' },
+            { number: '03', name: 'ロゴデザイン', price: '8,000円〜', note: '用途に合わせて複数案も可', color: '#8b5e34', icon: 'pen-tool' },
+            { number: '04', name: 'チラシ・ポスター', price: '5,000円〜', note: '片面デザインの目安', color: '#c24d5a', icon: 'file-image' },
+            { number: '05', name: '名刺・ショップカード', price: '4,000円〜', note: '印刷用データ相談可', color: '#6b5ca5', icon: 'contact-round' },
+            { number: '06', name: '商品ラベル', price: '5,000円〜', note: '形状・点数によりお見積もり', color: '#a15c38', icon: 'tag' },
+            { number: '07', name: '電子書籍表紙', price: '5,000円〜', note: 'Kindle向けサイズ対応', color: '#77559b', icon: 'book-open' },
+            { number: '08', name: 'GPTs・AI活用相談', price: '10,000円〜', note: '内容に応じてお見積もり', color: '#187a62', icon: 'bot' },
         ];
 
         const SERVICE_ESTIMATE_META = {
@@ -949,10 +951,13 @@
                     <div class="relative z-10 grid lg:grid-cols-[0.8fr_1.2fr] gap-10 items-center p-6 md:p-10 lg:p-12">
                         <div class="relative mx-auto w-full max-w-sm">
                             <div class="absolute -inset-3 rounded-2xl border border-[#3bf6d7]/50"></div>
-                            <img src="./AbotMe.jpg" alt="竹内二三彦 プロフィール" class="relative w-full aspect-[4/5] object-cover rounded-xl shadow-2xl" onerror="this.style.display='none'">
-                            <div class="absolute left-4 right-4 bottom-4 p-4 rounded-lg bg-gray-950/72 backdrop-blur-md border border-white/15">
-                                <p class="text-[#3bf6d7] text-sm font-bold">23hiko AI Creative</p>
-                                <p class="text-white font-bold">AI活用デザイナー / 業務改善経験45年以上</p>
+                            <div class="relative overflow-hidden rounded-xl shadow-2xl bg-gray-950">
+                                <img src="./AbotMe.jpg" alt="竹内二三彦 プロフィール" class="w-full aspect-[4/5] object-cover" onerror="this.style.display='none'">
+                                <div class="p-5 bg-gray-950 border-t border-[#3bf6d7]/40">
+                                    <p class="text-[#66ffe5] text-sm font-bold mb-1">23hiko AI Creative</p>
+                                    <p class="text-white text-base font-bold leading-relaxed">AI活用デザイナー</p>
+                                    <p class="text-gray-200 text-sm mt-1">業務改善・マネジメント経験45年以上</p>
+                                </div>
                             </div>
                         </div>
                         <div>
@@ -1143,17 +1148,20 @@
             container.innerHTML = PRICE_DATA.map((item, index) => `
                 <div class="relative bg-white dark:bg-gray-800 rounded-xl overflow-hidden border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-lg transition-shadow">
                     <div class="h-2" style="background-color:${item.color}"></div>
-                    <div class="p-6">
+                    <div class="p-5 h-full flex flex-col min-h-[275px]">
                         <div class="flex items-center justify-between gap-4 mb-5">
                             <span class="text-4xl font-bold opacity-15" style="color:${item.color}">${item.number}</span>
                             <button type="button" onclick="openEstimateQuestionnaire(${index})" class="w-10 h-10 rounded-full flex items-center justify-center text-white shadow-sm hover:scale-110 focus:outline-none focus:ring-4 focus:ring-offset-2 transition-transform" style="background-color:${item.color}; --tw-ring-color:${item.color}55" aria-label="${item.name}の見積もりアンケートを開く">
                                 <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
                             </button>
                         </div>
+                        <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style="background-color:${item.color}18; color:${item.color}">
+                            <i data-lucide="${item.icon}" class="w-6 h-6"></i>
+                        </div>
                         <h3 class="font-bold text-gray-900 dark:text-white mb-2">${item.name}</h3>
                         <p class="text-2xl font-bold mb-3" style="color:${item.color}">${item.price}</p>
                         <p class="text-sm text-gray-600 dark:text-gray-400">${item.note}</p>
-                        <button type="button" onclick="openEstimateQuestionnaire(${index})" class="mt-5 inline-flex items-center gap-2 text-sm font-bold hover:gap-3 transition-all" style="color:${item.color}">
+                        <button type="button" onclick="openEstimateQuestionnaire(${index})" class="mt-auto pt-5 inline-flex items-center gap-2 text-sm font-bold hover:gap-3 transition-all self-start" style="color:${item.color}">
                             質問に答えて相談
                             <i data-lucide="chevron-right" class="w-4 h-4"></i>
                         </button>
